@@ -11,6 +11,7 @@ Se implementaran tecnologias como React Router Dom, Context API, LocalStorage, p
 ## Instalación y ejecución
 
 ```bash
+cd client
 npm install
 npm run dev
 ```
@@ -27,7 +28,7 @@ Otros comandos disponibles:
 
 ## Credenciales de prueba
 
-El login es simulado (no hay backend de autenticación): las credenciales están hardcodeadas en `src/services/autorizacionesServices.js`.
+El login es simulado (no hay backend de autenticación): las credenciales están hardcodeadas en `client/src/services/autorizacionesServices.js`.
 
 | Email | Contraseña | Sector |
 |---|---|---|
