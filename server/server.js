@@ -29,5 +29,5 @@ mongoose.connect(process.env.MONGODB_URI)
   });
 
   import clientesRoutes from './routes/clientesRoutes.js';
-// ...
+
 app.use('/users', clientesRoutes);
