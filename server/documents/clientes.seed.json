@@ -1,0 +1,30 @@
+[
+  {
+    "email": "farmacia.central@ejemplo.com",
+    "username": "farmaciacentral",
+    "password": "1234",
+    "name": { "firstname": "Farmacia", "lastname": "Central" },
+    "address": {
+      "street": "Av. Belgrano",
+      "number": "450",
+      "zipcode": "4600",
+      "city": "San Salvador de Jujuy"
+    },
+    "phone": "3884001122",
+    "sucursal": "Sucursal Jujuy"
+  },
+  {
+    "email": "drogueria.norte@ejemplo.com",
+    "username": "drogurianorte",
+    "password": "1234",
+    "name": { "firstname": "Droguería", "lastname": "Norte" },
+    "address": {
+      "street": "San Martín",
+      "number": "120",
+      "zipcode": "4400",
+      "city": "Salta"
+    },
+    "phone": "3874005566",
+    "sucursal": "Sucursal Salta"
+  }
+]
