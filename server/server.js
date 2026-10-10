@@ -27,3 +27,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.error('Error al conectar a MongoDB', error);
     process.exit(1);
   });
+
+  import clientesRoutes from './routes/clientesRoutes.js';
+// ...
+app.use('/users', clientesRoutes);
