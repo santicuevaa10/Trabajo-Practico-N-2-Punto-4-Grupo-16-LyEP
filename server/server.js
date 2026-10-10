@@ -1,4 +1,3 @@
-cat > server/server.js << 'EOF'
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
