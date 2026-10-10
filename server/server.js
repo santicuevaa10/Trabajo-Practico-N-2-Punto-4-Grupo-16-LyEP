@@ -1,7 +1,9 @@
+cat > server/server.js << 'EOF'
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import clientesRoutes from './routes/ClientesRoutes.js';
 import { manejadorErrores } from './middleware/errorHandler.js';
 
 const app = express();
@@ -13,6 +15,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.json({ status: 'ok', servicio: 'ClientFlow API' });
 });
+
+app.use('/users', clientesRoutes);
 
 app.use(manejadorErrores);
 
@@ -27,7 +31,3 @@ mongoose.connect(process.env.MONGODB_URI)
     console.error('Error al conectar a MongoDB', error);
     process.exit(1);
   });
-
-  import clientesRoutes from './routes/clientesRoutes.js';
-// ...
-app.use('/users', clientesRoutes);
