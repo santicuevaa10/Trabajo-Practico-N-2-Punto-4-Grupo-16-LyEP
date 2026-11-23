@@ -14,6 +14,11 @@ const Nav = () => {
                         Clientes
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to="/alertas">
+                        Alertas
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );

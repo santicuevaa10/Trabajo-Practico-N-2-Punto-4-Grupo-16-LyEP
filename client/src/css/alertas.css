@@ -1,0 +1,27 @@
+.alertas-container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 25px rgba(214, 51, 132, .10);
+}
+
+.alertas-container h1 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.alertas-resumen {
+    text-align: center;
+    font-size: 18px;
+}
+
+.alertas-estado {
+    text-align: center;
+    color: #718096;
+    margin-top: 20px;
+}
+
+.badge-estado {
+    font-size: 14px;
+    padding: 6px 12px;
+}
