@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import useAutorizaciones from "../hooks/useAutorizaciones";
 import clientesService from '../services/clientesService';
+import FormCliente from "../components/FormCliente";
 
 const DetalleCliente = () => {
  const { id } = useParams();
@@ -15,6 +16,13 @@ const DetalleCliente = () => {
   const [errorCarga, setErrorCarga] = useState(false);
   const [mensaje, setMensaje] = useState("");
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
+  const [editando, setEditando] = useState(false);
+
+  const manejarClienteActualizado = (clienteActualizado) => {
+    setCliente(clienteActualizado);
+    setEditando(false);
+    setMensaje("Cliente actualizado correctamente");
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -65,6 +73,25 @@ const DetalleCliente = () => {
       <p>Rol actual: {role}</p>
 
       {mensaje && <p className = 'mensaje-eliminado'>{mensaje}</p>}
+
+      {editando ? (
+        <FormCliente
+          clienteInicial={cliente}
+          onClienteActualizado={manejarClienteActualizado}
+          onCancelar={() => setEditando(false)}
+        />
+      ) : (
+        <Button
+          className="mb-3"
+          variant="primary"
+          onClick={() => {
+            setMensaje("");
+            setEditando(true);
+          }}
+        >
+          Editar Cliente
+        </Button>
+      )}
 
       <p>
         <strong>ID:</strong> {cliente.id}

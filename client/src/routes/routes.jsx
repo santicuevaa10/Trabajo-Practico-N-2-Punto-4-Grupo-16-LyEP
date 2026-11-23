@@ -4,6 +4,7 @@ import Login from '../pages/Login'
 import Dashboard from '../pages/Dashboard'
 import ListaClientes from '../pages/ListaClientes'
 import DetalleCliente from '../pages/DetalleCliente'
+import Alertas from '../pages/Alertas'
 import ErrorPage from '../pages/ErrorPage'
 import RutaProtegida from '../components/RutaProtegida'
 const AppRoutes = () => {
@@ -34,6 +35,14 @@ const AppRoutes = () => {
           <DetalleCliente />
          </RutaProtegida>
       }
+      />
+      <Route
+        path="/alertas"
+        element={
+          <RutaProtegida>
+            <Alertas />
+          </RutaProtegida>
+        }
       />
       <Route path="*" element={<ErrorPage />} />
 
