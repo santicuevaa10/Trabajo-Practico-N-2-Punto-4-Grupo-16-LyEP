@@ -11,7 +11,7 @@
       "city": "San Salvador de Jujuy"
     },
     "phone": "3884001122",
-    "sucursal": "Sucursal Jujuy"
+    "sucursal": "Casa Central"
   },
   {
     "email": "drogueria.norte@ejemplo.com",
@@ -25,6 +25,20 @@
       "city": "Salta"
     },
     "phone": "3874005566",
-    "sucursal": "Sucursal Salta"
+    "sucursal": "Sucursal Norte"
+  },
+  {
+    "email": "farmacia.sur@ejemplo.com",
+    "username": "farmaciasur",
+    "password": "1234",
+    "name": { "firstname": "Farmacia", "lastname": "del Sur" },
+    "address": {
+      "street": "Av. Mate de Luna",
+      "number": "1580",
+      "zipcode": "4000",
+      "city": "San Miguel de Tucumán"
+    },
+    "phone": "3814007788",
+    "sucursal": "Sucursal Sur"
   }
 ]
