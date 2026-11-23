@@ -33,6 +33,30 @@ const crearCliente = async (cliente) => {
     return respuesta.data;
 };
 
+// Solo existe en el backend propio: FakeStoreAPI responde con error y el
+// Dashboard lo muestra como "no disponible" sin romperse.
+const obtenerResumenSucursales = async (signal) => {
+
+    const respuesta = await axios.get(
+        `${URL}/resumen/sucursales`,
+        { signal }
+    );
+
+    return respuesta.data;
+};
+
+// Envia solo los campos que cambian; el backend propio los actualiza
+// sin pisar el resto (PUT parcial con $set).
+const actualizarCliente = async (id, datos) => {
+
+    const respuesta = await axios.put(
+        `${URL}/${id}`,
+        datos
+    );
+
+    return respuesta.data;
+};
+
 const eliminarCliente = async (id) => {
 
     const respuesta = await axios.delete(
@@ -45,7 +69,9 @@ const eliminarCliente = async (id) => {
 export default {
     obtenerClientes,
     obtenerClientePorId,
+    obtenerResumenSucursales,
     crearCliente,
+    actualizarCliente,
     eliminarCliente
 };
 
