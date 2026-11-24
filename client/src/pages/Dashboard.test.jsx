@@ -12,6 +12,9 @@ vi.mock('../hooks/useResumenSucursales', () => ({
 vi.mock('../hooks/useAlertas', () => ({
   default: () => ({ alertas: [], loading: false, error: false }),
 }))
+vi.mock('../hooks/useAlertasDocumentos', () => ({
+  default: () => ({ vencidos: [], porVencer: [], loading: false, error: false }),
+}))
 
 vi.mock('../services/exportacionesService', async (importOriginal) => {
   const original = await importOriginal()
