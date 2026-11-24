@@ -1,0 +1,218 @@
+/* ==========================================================================
+   ClientFlow: tokens de diseño
+   Única fuente de colores, tipografía, espaciado, radios y sombras.
+   Los demás CSS solo usan var(--cf-*). Para cambiar la identidad visual
+   alcanza con editar este archivo.
+
+   Contraste verificado (WCAG AA, 4.5:1 para texto):
+   blanco sobre primary 6.0 · primary sobre primary-50 5.5 · text-muted sobre
+   blanco 7.2 · text-subtle sobre bg 5.3 · blanco sobre danger 5.5 ·
+   blanco sobre success 5.0 · texto oscuro sobre warning 8.8
+   ========================================================================== */
+
+:root {
+  /* --- Paleta base: verde azulado clínico ------------------------------ */
+  --cf-primary-50: #eef7f7;
+  --cf-primary-100: #d5ecec;
+  --cf-primary-200: #abd8d9;
+  --cf-primary-300: #7bbfc1;
+  --cf-primary-400: #4aa3a6;
+  --cf-primary-500: #238a8e;
+  --cf-primary-600: #0f6e74;
+  --cf-primary-700: #0b5a5f;
+  --cf-primary-800: #09474b;
+  --cf-primary-900: #06363a;
+  --cf-primary-rgb: 15, 110, 116;
+
+  /* Neutros fríos */
+  --cf-neutral-0: #ffffff;
+  --cf-neutral-50: #f6f8fa;
+  --cf-neutral-100: #eef1f5;
+  --cf-neutral-200: #dde2ea;
+  --cf-neutral-300: #c5ccd6;
+  --cf-neutral-400: #8a94a3;
+  --cf-neutral-500: #5f6877;
+  --cf-neutral-600: #4f5867;
+  --cf-neutral-700: #3a4250;
+  --cf-neutral-800: #262d3a;
+  --cf-neutral-900: #1a202b;
+
+  /* --- Roles semánticos (usar estos en los componentes) ---------------- */
+  --cf-primary: var(--cf-primary-600);
+  --cf-primary-hover: var(--cf-primary-700);
+  --cf-primary-strong: var(--cf-primary-700);   /* títulos */
+  --cf-primary-soft: var(--cf-primary-50);      /* fondos suaves, hover de filas */
+  --cf-primary-muted: var(--cf-primary-100);    /* fondos activos, separadores */
+  --cf-primary-border: var(--cf-primary-200);
+  --cf-on-primary: #ffffff;                     /* texto sobre primary */
+  --cf-on-primary-soft: rgba(255, 255, 255, .18);
+
+  --cf-bg: var(--cf-neutral-50);                /* fondo de página */
+  --cf-surface: var(--cf-neutral-0);            /* tarjetas, tablas, modales */
+  --cf-surface-alt: var(--cf-neutral-50);       /* filas alternas, cajas internas */
+  --cf-text: var(--cf-neutral-900);
+  --cf-text-muted: var(--cf-neutral-600);
+  --cf-text-subtle: var(--cf-neutral-500);      /* fechas, ayudas, placeholders */
+  --cf-border: var(--cf-neutral-200);
+  --cf-border-strong: var(--cf-neutral-400);    /* bordes de inputs (3:1) */
+
+  /* Estados. Uso: badges "activo / en riesgo / inactivo / doc. vencida" */
+  --cf-success: #1a7f4b;
+  --cf-success-soft: #e8f5ee;
+  --cf-success-text: #14633a;
+  --cf-success-border: #b5dcc6;
+
+  --cf-warning: #f0b429;                        /* con texto oscuro encima */
+  --cf-warning-soft: #fff6e0;
+  --cf-warning-text: #7a4f00;
+  --cf-warning-border: #f3d27a;
+  --cf-on-warning: var(--cf-neutral-900);
+
+  --cf-danger: #c0362c;
+  --cf-danger-hover: #9f2a22;
+  --cf-danger-soft: #fdeeec;
+  --cf-danger-text: #a3261d;
+
+  --cf-info: #1f63b8;
+  --cf-info-soft: #e8f0fb;
+
+  --cf-neutral-status: #5f6b7a;                 /* "sin cambios", "sin datos" */
+
+  /* --- Tipografía ------------------------------------------------------ */
+  /* Inter si está instalada en el equipo; si no, la fuente del sistema. */
+  --cf-font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --cf-fs-xs: 12px;
+  --cf-fs-sm: 14px;
+  --cf-fs-md: 16px;
+  --cf-fs-lg: 20px;
+  --cf-fs-xl: 24px;
+  --cf-fs-2xl: 32px;
+  --cf-fw-regular: 400;
+  --cf-fw-semibold: 600;
+  --cf-lh-base: 1.5;
+
+  /* --- Espaciado (base 4px) -------------------------------------------- */
+  --cf-space-1: 4px;
+  --cf-space-2: 8px;
+  --cf-space-3: 12px;
+  --cf-space-4: 16px;
+  --cf-space-5: 20px;
+  --cf-space-6: 24px;
+  --cf-space-7: 32px;
+  --cf-space-8: 40px;
+
+  /* --- Radios ---------------------------------------------------------- */
+  --cf-radius-sm: 6px;
+  --cf-radius-md: 10px;
+  --cf-radius-lg: 16px;
+  --cf-radius-pill: 999px;
+
+  /* --- Sombras (2 niveles) y foco -------------------------------------- */
+  --cf-shadow-1: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .10);
+  --cf-shadow-2: 0 8px 24px rgba(16, 24, 40, .12);
+  --cf-focus-ring: 0 0 0 3px rgba(var(--cf-primary-rgb), .30);
+
+  /* --- Bootstrap: hereda la identidad ---------------------------------- */
+  --bs-primary: var(--cf-primary);
+  --bs-primary-rgb: var(--cf-primary-rgb);
+  --bs-success: var(--cf-success);
+  --bs-success-rgb: 26, 127, 75;
+  --bs-danger: var(--cf-danger);
+  --bs-danger-rgb: 192, 54, 44;
+  --bs-warning: var(--cf-warning);
+  --bs-warning-rgb: 240, 180, 41;
+  --bs-info: var(--cf-info);
+  --bs-info-rgb: 31, 99, 184;
+  --bs-secondary: var(--cf-neutral-status);
+  --bs-secondary-rgb: 95, 107, 122;
+  --bs-body-font-family: var(--cf-font-sans);
+  --bs-body-font-size: var(--cf-fs-md);
+  --bs-body-line-height: var(--cf-lh-base);
+  --bs-body-color: var(--cf-text);
+  --bs-body-bg: var(--cf-bg);
+  --bs-secondary-color: var(--cf-text-muted);
+  --bs-border-color: var(--cf-border);
+  --bs-border-radius: var(--cf-radius-md);
+  --bs-border-radius-sm: var(--cf-radius-sm);
+  --bs-border-radius-lg: var(--cf-radius-lg);
+  --bs-border-radius-pill: var(--cf-radius-pill);
+  --bs-link-color: var(--cf-primary);
+  --bs-link-color-rgb: var(--cf-primary-rgb);
+  --bs-link-hover-color: var(--cf-primary-hover);
+  --bs-link-hover-color-rgb: 11, 90, 95;
+  --bs-focus-ring-color: rgba(var(--cf-primary-rgb), .30);
+}
+
+/* Los componentes de Bootstrap definen sus colores con variables propias
+   (no leen --bs-primary), así que se mapean acá. */
+.btn-primary {
+  --bs-btn-bg: var(--cf-primary);
+  --bs-btn-border-color: var(--cf-primary);
+  --bs-btn-hover-bg: var(--cf-primary-hover);
+  --bs-btn-hover-border-color: var(--cf-primary-hover);
+  --bs-btn-active-bg: var(--cf-primary-800);
+  --bs-btn-active-border-color: var(--cf-primary-800);
+  --bs-btn-disabled-bg: var(--cf-primary);
+  --bs-btn-disabled-border-color: var(--cf-primary);
+  --bs-btn-focus-shadow-rgb: var(--cf-primary-rgb);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--cf-primary);
+  --bs-btn-border-color: var(--cf-primary);
+  --bs-btn-hover-bg: var(--cf-primary);
+  --bs-btn-hover-border-color: var(--cf-primary);
+  --bs-btn-active-bg: var(--cf-primary-hover);
+  --bs-btn-active-border-color: var(--cf-primary-hover);
+  --bs-btn-focus-shadow-rgb: var(--cf-primary-rgb);
+}
+
+.btn-danger {
+  --bs-btn-bg: var(--cf-danger);
+  --bs-btn-border-color: var(--cf-danger);
+  --bs-btn-hover-bg: var(--cf-danger-hover);
+  --bs-btn-hover-border-color: var(--cf-danger-hover);
+  --bs-btn-active-bg: var(--cf-danger-hover);
+  --bs-btn-active-border-color: var(--cf-danger-hover);
+}
+
+.btn-success {
+  --bs-btn-bg: var(--cf-success);
+  --bs-btn-border-color: var(--cf-success);
+  --bs-btn-hover-bg: var(--cf-success-text);
+  --bs-btn-hover-border-color: var(--cf-success-text);
+}
+
+.btn-secondary {
+  --bs-btn-bg: var(--cf-neutral-status);
+  --bs-btn-border-color: var(--cf-neutral-status);
+  --bs-btn-hover-bg: var(--cf-neutral-700);
+  --bs-btn-hover-border-color: var(--cf-neutral-700);
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: var(--cf-primary);
+  --bs-dropdown-link-hover-bg: var(--cf-primary-soft);
+}
+
+.nav-tabs {
+  --bs-nav-tabs-link-active-color: var(--cf-primary);
+  --bs-nav-link-color: var(--cf-text-muted);
+  --bs-nav-link-hover-color: var(--cf-primary-hover);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--cf-primary);
+  box-shadow: var(--cf-focus-ring);
+}
+
+.form-check-input:checked {
+  background-color: var(--cf-primary);
+  border-color: var(--cf-primary);
+}
+
+.form-check-input:focus {
+  border-color: var(--cf-primary);
+  box-shadow: var(--cf-focus-ring);
+}
