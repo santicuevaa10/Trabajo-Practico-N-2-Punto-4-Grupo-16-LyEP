@@ -42,11 +42,86 @@ const eliminarCliente = async (id) => {
     return respuesta.data;
 };
 
+// Agrega un documento al cliente y devuelve el cliente actualizado
+// (incluye estadoDocumental recalculado por el backend).
+const agregarDocumento = async (idCliente, documento) => {
+
+    const respuesta = await axios.post(
+        `${URL}/${idCliente}/documentos`,
+        documento
+    );
+
+    return respuesta.data;
+};
+
+const eliminarDocumento = async (idCliente, idDocumento) => {
+
+    const respuesta = await axios.delete(
+        `${URL}/${idCliente}/documentos/${idDocumento}`
+    );
+
+    return respuesta.data;
+};
+
+// Historial de condiciones comerciales, del mas nuevo al mas viejo.
+const obtenerCondiciones = async (idCliente, signal) => {
+
+    const respuesta = await axios.get(
+        `${URL}/${idCliente}/condiciones`,
+        { signal }
+    );
+
+    return respuesta.data;
+};
+
+// Registra una condicion nueva. "usuario" viaja en el header X-Usuario e
+// identifica a quien la autoriza (el backend responde 400 si falta).
+const crearCondicion = async (idCliente, condicion, usuario) => {
+
+    const respuesta = await axios.post(
+        `${URL}/${idCliente}/condiciones`,
+        condicion,
+        { headers: { "X-Usuario": usuario } }
+    );
+
+    return respuesta.data;
+};
+
+// Ultimas 20 visitas del cliente, de la mas reciente a la mas vieja.
+const obtenerVisitas = async (idCliente, signal) => {
+
+    const respuesta = await axios.get(
+        `${URL}/${idCliente}/visitas`,
+        { signal }
+    );
+
+    return respuesta.data;
+};
+
+// Registra una visita. "usuario" (el vendedor) viaja en el header X-Usuario.
+// Devuelve { visita, cliente } con ultimaVisita/ultimaCompra ya actualizadas.
+const registrarVisita = async (idCliente, visita, usuario) => {
+
+    const respuesta = await axios.post(
+        `${URL}/${idCliente}/visitas`,
+        visita,
+        { headers: { "X-Usuario": usuario } }
+    );
+
+    return respuesta.data;
+};
+
 export default {
     obtenerClientes,
     obtenerClientePorId,
     crearCliente,
-    eliminarCliente
+    eliminarCliente,
+    agregarDocumento,
+    eliminarDocumento,
+    obtenerCondiciones,
+    crearCondicion,
+    obtenerVisitas,
+    registrarVisita
 };
 
 // PROPUESTA DE MEJORA: persistencia real de los clientes (no activa todavia)
