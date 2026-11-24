@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { hashearPassword, hashearPasswordEnUpdate } from '../utils/passwords.js';
 
 export const TIPOS_DOCUMENTO = ['habilitacion', 'director_tecnico', 'constancia_afip', 'otro'];
 // Ventana (en dias) para considerar que un documento esta "por vencer".
@@ -18,6 +19,8 @@ const transformarJSON = {
   transform: (_doc, ret) => {
     delete ret._id;
     delete ret.__v;
+    // La contraseña (aunque este hasheada) nunca sale en una respuesta de la API.
+    delete ret.password;
     return ret;
   }
 };
@@ -65,6 +68,37 @@ clienteSchema.virtual('estadoDocumental').get(function () {
   if (estados.includes('vencido')) return 'vencido';
   if (estados.includes('por_vencer')) return 'por_vencer';
   return 'ok';
+});
+
+// --- Contraseñas: siempre se guardan hasheadas con bcrypt ---
+// Los tres caminos por los que una contraseña llega a la base pasan por aca.
+// hashearPassword() no toca un valor que ya es un hash, asi que ningun camino
+// hashea dos veces.
+
+// 1) Cliente.create(), new Cliente().save() (POST /users, importacion de CSV).
+clienteSchema.pre('save', async function () {
+  if (!this.isModified('password')) return;
+  this.password = await hashearPassword(this.password);
+});
+
+// 2) Updates por query (findByIdAndUpdate, updateOne, ...). Hoy el PUT no deja
+// cambiar la contraseña, pero si algun dia se permite, queda hasheada igual.
+clienteSchema.pre(
+  ['findOneAndUpdate', 'updateOne', 'updateMany', 'replaceOne', 'findOneAndReplace'],
+  async function () {
+    const update = this.getUpdate();
+    if (await hashearPasswordEnUpdate(update)) this.setUpdate(update);
+  }
+);
+
+// 3) Cliente.insertMany() (documents/seeds.js): no dispara pre('save').
+clienteSchema.pre('insertMany', function (next, docs) {
+  const lista = Array.isArray(docs) ? docs : [docs];
+  Promise.all(
+    lista.map(async (doc) => {
+      if (doc?.password !== undefined) doc.password = await hashearPassword(doc.password);
+    })
+  ).then(() => next(), next);
 });
 
 // El frontend espera "id" (string), no "_id" (ObjectId de Mongo).
