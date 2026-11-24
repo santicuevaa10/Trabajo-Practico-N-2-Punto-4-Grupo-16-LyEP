@@ -1,47 +1,78 @@
-*{
+/* Base global de ClientFlow. Solo consume tokens (ver tokens.css). */
+*,
+*::before,
+*::after{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    font-family:var(--cf-font-sans);
+    font-size:var(--cf-text-base);
+    line-height:var(--cf-leading-normal);
+    color:var(--cf-text);
+    background:var(--cf-bg);
+    -webkit-font-smoothing:antialiased;
 }
 
-main {
-    flex: 1;
+main{
+    flex:1;
 }
+
+/* Jerarquia sobria: el color lo pone el texto, no la marca */
+h1,
+h2,
+h3,
+h4{
+    color:var(--cf-text);
+    line-height:var(--cf-leading-tight);
+    letter-spacing:0;
+}
+
 h1{
-    color:#d63384;
-    font-weight:700;
-    margin-bottom:25px;
+    font-size:var(--cf-text-xl);
+    font-weight:var(--cf-weight-semibold);
+    margin-bottom:var(--cf-space-4);
 }
 
 h2{
-    color:#c2185b;
-    margin-bottom:20px;
+    font-size:var(--cf-text-lg);
+    font-weight:var(--cf-weight-semibold);
+    margin-bottom:var(--cf-space-3);
 }
 
 h3{
-    color:#e75480;
+    font-size:var(--cf-text-md);
+    font-weight:var(--cf-weight-semibold);
+    color:var(--cf-text-secondary);
+    margin-bottom:var(--cf-space-2);
 }
 
 a{
+    color:var(--cf-primary);
     text-decoration:none;
+}
+
+a:hover{
+    color:var(--cf-primary-hover);
+    text-decoration:underline;
 }
 
 hr{
     border:none;
-    height:2px;
-    background:#ffd6e7;
-    margin:35px 0;
+    height:1px;
+    background:var(--cf-divider);
+    margin:var(--cf-space-6) 0;
 }
 
-h1,
-h2,
-h3{
-    letter-spacing:.3px;
+/* Cifras alineadas en tablas y KPIs */
+table,
+.cf-num{
+    font-variant-numeric:tabular-nums;
 }
 
 button:hover,
@@ -51,14 +82,37 @@ button:hover,
 
 input,
 select,
+textarea,
 button,
 .btn,
 table a{
-    transition:.25s;
+    transition:
+        background-color var(--cf-duration-fast) var(--cf-ease),
+        border-color var(--cf-duration-fast) var(--cf-ease),
+        color var(--cf-duration-fast) var(--cf-ease),
+        box-shadow var(--cf-duration-fast) var(--cf-ease);
+}
+
+/* Foco visible solo con teclado */
+:focus-visible{
+    outline:var(--cf-focus-outline);
+    outline-offset:2px;
 }
 
 ::selection{
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary-subtle);
+    color:var(--cf-text);
 }
 
+/* Utilidad para texto solo para lectores de pantalla */
+.cf-sr-only{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+}
