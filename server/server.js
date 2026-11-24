@@ -3,6 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import clientesRoutes from './routes/ClientesRoutes.js';
+import alertasRoutes from './routes/AlertasRoutes.js';
+import metricasRoutes from './routes/MetricasRoutes.js';
+import importacionesRoutes from './routes/ImportacionesRoutes.js';
 import { manejadorErrores } from './middleware/errorHandler.js';
 
 const app = express();
@@ -16,6 +19,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', clientesRoutes);
+app.use('/alertas', alertasRoutes);
+app.use('/metricas', metricasRoutes);
+app.use('/importaciones', importacionesRoutes);
 
 app.use(manejadorErrores);
 
