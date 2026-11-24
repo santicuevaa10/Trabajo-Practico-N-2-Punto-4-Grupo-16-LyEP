@@ -1,415 +1,218 @@
-/* =========================================================================
-   ClientFlow · Design tokens
-   -------------------------------------------------------------------------
-   Unica fuente de verdad de color, tipografia, espaciado, radios, sombras y
-   capas. El resto de los CSS consume var(--cf-*) y nunca escribe un hex.
+/* ==========================================================================
+   ClientFlow: tokens de diseño
+   Única fuente de colores, tipografía, espaciado, radios y sombras.
+   Los demás CSS solo usan var(--cf-*). Para cambiar la identidad visual
+   alcanza con editar este archivo.
 
-   Criterio: SaaS B2B del rubro salud. Sobrio (neutros slate), confiable
-   (primario petroleo/teal, asociado a salud sin ser "verde hospital") y
-   denso (escala tipografica compacta, base 14px, espaciado de 4px).
+   Contraste verificado (WCAG AA, 4.5:1 para texto):
+   blanco sobre primary 6.0 · primary sobre primary-50 5.5 · text-muted sobre
+   blanco 7.2 · text-subtle sobre bg 5.3 · blanco sobre danger 5.5 ·
+   blanco sobre success 5.0 · texto oscuro sobre warning 8.8
+   ========================================================================== */
 
-   Contrastes medidos contra --cf-surface (#ffffff), WCAG 2.1:
-     --cf-text            #1b2733  15.1:1  AAA
-     --cf-text-muted      #566475   6.0:1  AA   (etiquetas, ayudas)
-     --cf-primary         #0b6b78   6.2:1  AA   (texto, links, botones)
-     --cf-success-text    #146c43   6.5:1  AA
-     --cf-warning-text    #8a4b00   6.8:1  AA   (nunca amarillo como texto)
-     --cf-danger-text     #b42318   6.6:1  AA
-     --cf-info-text       #1d4ed8   6.7:1  AA
-     Sobre --cf-bg (#f3f5f8) todos siguen >= 5.5:1.
-     Texto blanco sobre primary / success / warning / danger: >= 5.0:1 AA
-     --cf-border-input   #7d8a99   3.5:1  (WCAG 1.4.11, borde de control)
-     Sidebar: --cf-nav-text #c7d2de sobre --cf-nav-bg #0f1e2b  11.0:1
-   ========================================================================= */
+:root {
+  /* --- Paleta base: verde azulado clínico ------------------------------ */
+  --cf-primary-50: #eef7f7;
+  --cf-primary-100: #d5ecec;
+  --cf-primary-200: #abd8d9;
+  --cf-primary-300: #7bbfc1;
+  --cf-primary-400: #4aa3a6;
+  --cf-primary-500: #238a8e;
+  --cf-primary-600: #0f6e74;
+  --cf-primary-700: #0b5a5f;
+  --cf-primary-800: #09474b;
+  --cf-primary-900: #06363a;
+  --cf-primary-rgb: 15, 110, 116;
 
-:root{
-    /* ---------- Paleta base (no usar directo en componentes) ---------- */
-    --cf-teal-50:#eef7f8;
-    --cf-teal-100:#d4ecef;
-    --cf-teal-200:#a9d8de;
-    --cf-teal-500:#1a8a98;
-    --cf-teal-600:#0b6b78;
-    --cf-teal-700:#08545e;
-    --cf-teal-800:#063f47;
+  /* Neutros fríos */
+  --cf-neutral-0: #ffffff;
+  --cf-neutral-50: #f6f8fa;
+  --cf-neutral-100: #eef1f5;
+  --cf-neutral-200: #dde2ea;
+  --cf-neutral-300: #c5ccd6;
+  --cf-neutral-400: #8a94a3;
+  --cf-neutral-500: #5f6877;
+  --cf-neutral-600: #4f5867;
+  --cf-neutral-700: #3a4250;
+  --cf-neutral-800: #262d3a;
+  --cf-neutral-900: #1a202b;
 
-    --cf-slate-0:#ffffff;
-    --cf-slate-25:#f8fafb;
-    --cf-slate-50:#f3f5f8;
-    --cf-slate-100:#e8ecf1;
-    --cf-slate-200:#d6dde5;
-    --cf-slate-300:#b9c3cf;
-    --cf-slate-500:#566475;
-    --cf-slate-700:#2f3d4c;
-    --cf-slate-900:#1b2733;
-    --cf-navy-900:#0f1e2b;
-    --cf-navy-800:#162a3a;
-    --cf-navy-700:#1f3749;
+  /* --- Roles semánticos (usar estos en los componentes) ---------------- */
+  --cf-primary: var(--cf-primary-600);
+  --cf-primary-hover: var(--cf-primary-700);
+  --cf-primary-strong: var(--cf-primary-700);   /* títulos */
+  --cf-primary-soft: var(--cf-primary-50);      /* fondos suaves, hover de filas */
+  --cf-primary-muted: var(--cf-primary-100);    /* fondos activos, separadores */
+  --cf-primary-border: var(--cf-primary-200);
+  --cf-on-primary: #ffffff;                     /* texto sobre primary */
+  --cf-on-primary-soft: rgba(255, 255, 255, .18);
 
-    /* ---------- Superficies ---------- */
-    --cf-bg:var(--cf-slate-50);            /* fondo de la app */
-    --cf-surface:var(--cf-slate-0);        /* tarjetas, tablas, modales */
-    --cf-surface-muted:var(--cf-slate-25); /* filas alternas, bloques de dato */
-    --cf-surface-hover:var(--cf-slate-100);
+  --cf-bg: var(--cf-neutral-50);                /* fondo de página */
+  --cf-surface: var(--cf-neutral-0);            /* tarjetas, tablas, modales */
+  --cf-surface-alt: var(--cf-neutral-50);       /* filas alternas, cajas internas */
+  --cf-text: var(--cf-neutral-900);
+  --cf-text-muted: var(--cf-neutral-600);
+  --cf-text-subtle: var(--cf-neutral-500);      /* fechas, ayudas, placeholders */
+  --cf-border: var(--cf-neutral-200);
+  --cf-border-strong: var(--cf-neutral-400);    /* bordes de inputs (3:1) */
 
-    /* ---------- Texto ---------- */
-    --cf-text:var(--cf-slate-900);
-    --cf-text-secondary:var(--cf-slate-700);
-    --cf-text-muted:var(--cf-slate-500);
-    --cf-text-inverse:#ffffff;
+  /* Estados. Uso: badges "activo / en riesgo / inactivo / doc. vencida" */
+  --cf-success: #1a7f4b;
+  --cf-success-soft: #e8f5ee;
+  --cf-success-text: #14633a;
+  --cf-success-border: #b5dcc6;
 
-    /* ---------- Bordes ---------- */
-    --cf-border:var(--cf-slate-200);
-    --cf-border-strong:var(--cf-slate-300);
-    --cf-divider:var(--cf-slate-100);
-    --cf-border-input:#7d8a99;         /* inputs, selects, checkboxes: >= 3:1 */
+  --cf-warning: #f0b429;                        /* con texto oscuro encima */
+  --cf-warning-soft: #fff6e0;
+  --cf-warning-text: #7a4f00;
+  --cf-warning-border: #f3d27a;
+  --cf-on-warning: var(--cf-neutral-900);
 
-    /* ---------- Marca / accion principal ---------- */
-    --cf-primary:var(--cf-teal-600);
-    --cf-primary-rgb:11,107,120;
-    --cf-primary-hover:var(--cf-teal-700);
-    --cf-primary-active:var(--cf-teal-800);
-    --cf-primary-subtle:var(--cf-teal-50);
-    --cf-primary-border:var(--cf-teal-200);
+  --cf-danger: #c0362c;
+  --cf-danger-hover: #9f2a22;
+  --cf-danger-soft: #fdeeec;
+  --cf-danger-text: #a3261d;
 
-    /* ---------- Semanticos (estado comercial / documental / visitas) ----
-       *-solid: fondo de badge con texto blanco
-       *-bg   : fondo suave de alerta o fila
-       *-text : texto sobre fondo blanco o *-bg                            */
-    --cf-success-solid:#157347;
-    --cf-success-bg:#e8f5ee;
-    --cf-success-border:#a6d8bd;
-    --cf-success-text:#146c43;
+  --cf-info: #1f63b8;
+  --cf-info-soft: #e8f0fb;
 
-    --cf-warning-solid:#b45309;
-    --cf-warning-bg:#fff6e0;
-    --cf-warning-border:#f2cf7d;
-    --cf-warning-text:#8a4b00;
+  --cf-neutral-status: #5f6b7a;                 /* "sin cambios", "sin datos" */
 
-    --cf-danger-solid:#b42318;
-    --cf-danger-rgb:180,35,24;
-    --cf-danger-bg:#fdecea;
-    --cf-danger-border:#f3b8b2;
-    --cf-danger-text:#b42318;
-    --cf-danger-hover:#912018;
+  /* --- Tipografía ------------------------------------------------------ */
+  /* Inter si está instalada en el equipo; si no, la fuente del sistema. */
+  --cf-font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --cf-fs-xs: 12px;
+  --cf-fs-sm: 14px;
+  --cf-fs-md: 16px;
+  --cf-fs-lg: 20px;
+  --cf-fs-xl: 24px;
+  --cf-fs-2xl: 32px;
+  --cf-fw-regular: 400;
+  --cf-fw-semibold: 600;
+  --cf-lh-base: 1.5;
 
-    --cf-info-solid:#1d4ed8;
-    --cf-info-bg:#eaf1fe;
-    --cf-info-border:#b3c8f7;
-    --cf-info-text:#1d4ed8;
+  /* --- Espaciado (base 4px) -------------------------------------------- */
+  --cf-space-1: 4px;
+  --cf-space-2: 8px;
+  --cf-space-3: 12px;
+  --cf-space-4: 16px;
+  --cf-space-5: 20px;
+  --cf-space-6: 24px;
+  --cf-space-7: 32px;
+  --cf-space-8: 40px;
 
-    --cf-neutral-solid:#566475;
-    --cf-neutral-bg:var(--cf-slate-100);
-    --cf-neutral-text:var(--cf-slate-700);
+  /* --- Radios ---------------------------------------------------------- */
+  --cf-radius-sm: 6px;
+  --cf-radius-md: 10px;
+  --cf-radius-lg: 16px;
+  --cf-radius-pill: 999px;
 
-    /* ---------- Sidebar / navegacion ---------- */
-    --cf-nav-bg:var(--cf-navy-900);
-    --cf-nav-bg-hover:var(--cf-navy-800);
-    --cf-nav-bg-active:var(--cf-navy-700);
-    --cf-nav-text:#c7d2de;
-    --cf-nav-text-active:#ffffff;
-    --cf-nav-accent:#4fc1cf;               /* indicador de item activo */
-    --cf-nav-border:rgba(255,255,255,.08);
-    --cf-sidebar-width:240px;
-    --cf-sidebar-width-collapsed:64px;
-    --cf-topbar-height:56px;
+  /* --- Sombras (2 niveles) y foco -------------------------------------- */
+  --cf-shadow-1: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .10);
+  --cf-shadow-2: 0 8px 24px rgba(16, 24, 40, .12);
+  --cf-focus-ring: 0 0 0 3px rgba(var(--cf-primary-rgb), .30);
 
-    /* ---------- Foco (visible en fondo claro y oscuro) ---------- */
-    --cf-focus-ring:0 0 0 3px rgba(var(--cf-primary-rgb),.35);
-    --cf-focus-outline:2px solid var(--cf-primary);
-    --cf-focus-outline-inverse:2px solid var(--cf-nav-accent);
-
-    /* ---------- Tipografia ----------
-       Sin fuentes externas: stack de sistema (Segoe UI en Windows, SF en
-       macOS, Roboto en Android). Cifras tabulares para tablas y KPIs.   */
-    --cf-font-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",
-        "Noto Sans",Arial,sans-serif;
-    --cf-font-mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,
-        "Liberation Mono",monospace;
-
-    --cf-text-xs:.75rem;     /* 12px  badges, metadatos */
-    --cf-text-sm:.8125rem;   /* 13px  etiquetas, celdas densas */
-    --cf-text-base:.875rem;  /* 14px  cuerpo */
-    --cf-text-md:1rem;       /* 16px  valores destacados, inputs mobile */
-    --cf-text-lg:1.125rem;   /* 18px  titulo de tarjeta */
-    --cf-text-xl:1.375rem;   /* 22px  titulo de pagina */
-    --cf-text-2xl:1.75rem;   /* 28px  cifra KPI */
-
-    --cf-weight-regular:400;
-    --cf-weight-medium:500;
-    --cf-weight-semibold:600;
-    --cf-weight-bold:700;
-
-    --cf-leading-tight:1.25;
-    --cf-leading-normal:1.5;
-
-    --cf-tracking-caps:.06em; /* rotulos en mayuscula */
-
-    /* ---------- Espaciado (escala de 4px) ---------- */
-    --cf-space-1:.25rem;  /*  4 */
-    --cf-space-2:.5rem;   /*  8 */
-    --cf-space-3:.75rem;  /* 12 */
-    --cf-space-4:1rem;    /* 16 */
-    --cf-space-5:1.25rem; /* 20 */
-    --cf-space-6:1.5rem;  /* 24 */
-    --cf-space-8:2rem;    /* 32 */
-    --cf-space-10:2.5rem; /* 40 */
-    --cf-space-12:3rem;   /* 48 */
-
-    --cf-content-max:1280px;
-    --cf-page-gutter:var(--cf-space-6);
-
-    /* ---------- Radios ---------- */
-    --cf-radius-sm:4px;   /* badges, inputs pequeños */
-    --cf-radius-md:6px;   /* botones, inputs */
-    --cf-radius-lg:8px;   /* tarjetas, tablas */
-    --cf-radius-xl:12px;  /* modales, paneles destacados */
-    --cf-radius-pill:999px;
-
-    /* ---------- Sombras (sutiles: la jerarquia la dan los bordes) ---------- */
-    --cf-shadow-xs:0 1px 2px rgba(15,30,43,.06);
-    --cf-shadow-sm:0 1px 3px rgba(15,30,43,.08),0 1px 2px rgba(15,30,43,.04);
-    --cf-shadow-md:0 4px 12px rgba(15,30,43,.08);
-    --cf-shadow-lg:0 12px 32px rgba(15,30,43,.14);
-
-    /* ---------- Movimiento ---------- */
-    --cf-duration-fast:120ms;
-    --cf-duration-base:200ms;
-    --cf-ease:cubic-bezier(.2,0,0,1);
-
-    /* ---------- Capas ---------- */
-    --cf-z-sidebar:1030;
-    --cf-z-topbar:1020;
-    --cf-z-overlay:1040;
-    --cf-z-toast:2000;
-
-    /* ---------- Controles ---------- */
-    --cf-control-height:36px;
-    --cf-control-height-sm:30px;
-    --cf-touch-target:44px; /* minimo en mobile */
+  /* --- Bootstrap: hereda la identidad ---------------------------------- */
+  --bs-primary: var(--cf-primary);
+  --bs-primary-rgb: var(--cf-primary-rgb);
+  --bs-success: var(--cf-success);
+  --bs-success-rgb: 26, 127, 75;
+  --bs-danger: var(--cf-danger);
+  --bs-danger-rgb: 192, 54, 44;
+  --bs-warning: var(--cf-warning);
+  --bs-warning-rgb: 240, 180, 41;
+  --bs-info: var(--cf-info);
+  --bs-info-rgb: 31, 99, 184;
+  --bs-secondary: var(--cf-neutral-status);
+  --bs-secondary-rgb: 95, 107, 122;
+  --bs-body-font-family: var(--cf-font-sans);
+  --bs-body-font-size: var(--cf-fs-md);
+  --bs-body-line-height: var(--cf-lh-base);
+  --bs-body-color: var(--cf-text);
+  --bs-body-bg: var(--cf-bg);
+  --bs-secondary-color: var(--cf-text-muted);
+  --bs-border-color: var(--cf-border);
+  --bs-border-radius: var(--cf-radius-md);
+  --bs-border-radius-sm: var(--cf-radius-sm);
+  --bs-border-radius-lg: var(--cf-radius-lg);
+  --bs-border-radius-pill: var(--cf-radius-pill);
+  --bs-link-color: var(--cf-primary);
+  --bs-link-color-rgb: var(--cf-primary-rgb);
+  --bs-link-hover-color: var(--cf-primary-hover);
+  --bs-link-hover-color-rgb: 11, 90, 95;
+  --bs-focus-ring-color: rgba(var(--cf-primary-rgb), .30);
 }
 
-/* =========================================================================
-   Puente a Bootstrap 5.3
-   Bootstrap expone variables CSS en :root y por componente. Las pisamos
-   para que Button, Badge, Alert, Tabs, Modal y Form de react-bootstrap
-   adopten la paleta sin tocar el JSX.
-   ========================================================================= */
-:root{
-    --bs-body-font-family:var(--cf-font-sans);
-    --bs-body-font-size:var(--cf-text-base);
-    --bs-body-line-height:var(--cf-leading-normal);
-    --bs-body-color:var(--cf-text);
-    --bs-body-color-rgb:27,39,51;
-    --bs-body-bg:var(--cf-bg);
-    --bs-secondary-color:var(--cf-text-muted);
-    --bs-emphasis-color:var(--cf-text);
-    --bs-heading-color:var(--cf-text);
-
-    --bs-primary:var(--cf-primary);
-    --bs-primary-rgb:var(--cf-primary-rgb);
-    --bs-primary-text-emphasis:var(--cf-teal-800);
-    --bs-primary-bg-subtle:var(--cf-primary-subtle);
-    --bs-primary-border-subtle:var(--cf-primary-border);
-
-    --bs-success:var(--cf-success-solid);
-    --bs-success-rgb:21,115,71;
-    --bs-warning:var(--cf-warning-solid);
-    --bs-warning-rgb:180,83,9;
-    --bs-danger:var(--cf-danger-solid);
-    --bs-danger-rgb:var(--cf-danger-rgb);
-    --bs-info:var(--cf-info-solid);
-    --bs-info-rgb:29,78,216;
-    --bs-secondary:var(--cf-neutral-solid);
-    --bs-secondary-rgb:86,100,117;
-
-    --bs-border-color:var(--cf-border);
-    --bs-border-radius:var(--cf-radius-md);
-    --bs-border-radius-sm:var(--cf-radius-sm);
-    --bs-border-radius-lg:var(--cf-radius-lg);
-
-    --bs-link-color:var(--cf-primary);
-    --bs-link-color-rgb:var(--cf-primary-rgb);
-    --bs-link-hover-color:var(--cf-primary-hover);
-    --bs-link-hover-color-rgb:8,84,94;
-
-    --bs-focus-ring-color:rgba(var(--cf-primary-rgb),.35);
+/* Los componentes de Bootstrap definen sus colores con variables propias
+   (no leen --bs-primary), así que se mapean acá. */
+.btn-primary {
+  --bs-btn-bg: var(--cf-primary);
+  --bs-btn-border-color: var(--cf-primary);
+  --bs-btn-hover-bg: var(--cf-primary-hover);
+  --bs-btn-hover-border-color: var(--cf-primary-hover);
+  --bs-btn-active-bg: var(--cf-primary-800);
+  --bs-btn-active-border-color: var(--cf-primary-800);
+  --bs-btn-disabled-bg: var(--cf-primary);
+  --bs-btn-disabled-border-color: var(--cf-primary);
+  --bs-btn-focus-shadow-rgb: var(--cf-primary-rgb);
 }
 
-/* Botones: Bootstrap define estos valores por clase, no los hereda de :root */
-.btn{
-    --bs-btn-font-size:var(--cf-text-base);
-    --bs-btn-font-weight:var(--cf-weight-semibold);
-    --bs-btn-border-radius:var(--cf-radius-md);
-    --bs-btn-focus-box-shadow:var(--cf-focus-ring);
+.btn-outline-primary {
+  --bs-btn-color: var(--cf-primary);
+  --bs-btn-border-color: var(--cf-primary);
+  --bs-btn-hover-bg: var(--cf-primary);
+  --bs-btn-hover-border-color: var(--cf-primary);
+  --bs-btn-active-bg: var(--cf-primary-hover);
+  --bs-btn-active-border-color: var(--cf-primary-hover);
+  --bs-btn-focus-shadow-rgb: var(--cf-primary-rgb);
 }
 
-.btn-primary{
-    --bs-btn-bg:var(--cf-primary);
-    --bs-btn-border-color:var(--cf-primary);
-    --bs-btn-hover-bg:var(--cf-primary-hover);
-    --bs-btn-hover-border-color:var(--cf-primary-hover);
-    --bs-btn-active-bg:var(--cf-primary-active);
-    --bs-btn-active-border-color:var(--cf-primary-active);
-    --bs-btn-disabled-bg:var(--cf-primary);
-    --bs-btn-disabled-border-color:var(--cf-primary);
+.btn-danger {
+  --bs-btn-bg: var(--cf-danger);
+  --bs-btn-border-color: var(--cf-danger);
+  --bs-btn-hover-bg: var(--cf-danger-hover);
+  --bs-btn-hover-border-color: var(--cf-danger-hover);
+  --bs-btn-active-bg: var(--cf-danger-hover);
+  --bs-btn-active-border-color: var(--cf-danger-hover);
 }
 
-.btn-outline-primary{
-    --bs-btn-color:var(--cf-primary);
-    --bs-btn-border-color:var(--cf-primary);
-    --bs-btn-hover-bg:var(--cf-primary);
-    --bs-btn-hover-border-color:var(--cf-primary);
-    --bs-btn-active-bg:var(--cf-primary-hover);
-    --bs-btn-active-border-color:var(--cf-primary-hover);
+.btn-success {
+  --bs-btn-bg: var(--cf-success);
+  --bs-btn-border-color: var(--cf-success);
+  --bs-btn-hover-bg: var(--cf-success-text);
+  --bs-btn-hover-border-color: var(--cf-success-text);
 }
 
-.btn-secondary{
-    --bs-btn-bg:var(--cf-surface);
-    --bs-btn-color:var(--cf-text-secondary);
-    --bs-btn-border-color:var(--cf-border-strong);
-    --bs-btn-hover-bg:var(--cf-surface-hover);
-    --bs-btn-hover-color:var(--cf-text);
-    --bs-btn-hover-border-color:var(--cf-border-strong);
-    --bs-btn-active-bg:var(--cf-slate-200);
-    --bs-btn-active-color:var(--cf-text);
-    --bs-btn-active-border-color:var(--cf-border-strong);
+.btn-secondary {
+  --bs-btn-bg: var(--cf-neutral-status);
+  --bs-btn-border-color: var(--cf-neutral-status);
+  --bs-btn-hover-bg: var(--cf-neutral-700);
+  --bs-btn-hover-border-color: var(--cf-neutral-700);
 }
 
-.btn-outline-secondary{
-    --bs-btn-color:var(--cf-text-secondary);
-    --bs-btn-border-color:var(--cf-border-strong);
-    --bs-btn-hover-bg:var(--cf-surface-hover);
-    --bs-btn-hover-color:var(--cf-text);
-    --bs-btn-hover-border-color:var(--cf-border-strong);
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: var(--cf-primary);
+  --bs-dropdown-link-hover-bg: var(--cf-primary-soft);
 }
 
-.btn-danger{
-    --bs-btn-bg:var(--cf-danger-solid);
-    --bs-btn-border-color:var(--cf-danger-solid);
-    --bs-btn-hover-bg:var(--cf-danger-hover);
-    --bs-btn-hover-border-color:var(--cf-danger-hover);
-    --bs-btn-active-bg:var(--cf-danger-hover);
-}
-
-.btn-outline-danger{
-    --bs-btn-color:var(--cf-danger-text);
-    --bs-btn-border-color:var(--cf-danger-solid);
-    --bs-btn-hover-bg:var(--cf-danger-solid);
-    --bs-btn-hover-border-color:var(--cf-danger-solid);
-}
-
-.btn-success{
-    --bs-btn-bg:var(--cf-success-solid);
-    --bs-btn-border-color:var(--cf-success-solid);
-    --bs-btn-hover-bg:#0f5c38;
-    --bs-btn-hover-border-color:#0f5c38;
-}
-
-/* Amarillo con texto blanco no pasa AA: el warning usa ambar oscuro */
-.btn-warning{
-    --bs-btn-bg:var(--cf-warning-solid);
-    --bs-btn-color:#ffffff;
-    --bs-btn-border-color:var(--cf-warning-solid);
-    --bs-btn-hover-bg:#8f4207;
-    --bs-btn-hover-color:#ffffff;
-    --bs-btn-hover-border-color:#8f4207;
-    --bs-btn-active-color:#ffffff;
-}
-
-.btn-link{
-    --bs-btn-color:var(--cf-primary);
-    --bs-btn-hover-color:var(--cf-primary-hover);
-}
-
-/* Formularios */
-.form-control,
-.form-select{
-    font-size:var(--cf-text-base);
-    border-color:var(--cf-border-input);
-    border-radius:var(--cf-radius-md);
-    color:var(--cf-text);
+.nav-tabs {
+  --bs-nav-tabs-link-active-color: var(--cf-primary);
+  --bs-nav-link-color: var(--cf-text-muted);
+  --bs-nav-link-hover-color: var(--cf-primary-hover);
 }
 
 .form-control:focus,
-.form-select:focus{
-    border-color:var(--cf-primary);
-    box-shadow:var(--cf-focus-ring);
+.form-select:focus {
+  border-color: var(--cf-primary);
+  box-shadow: var(--cf-focus-ring);
 }
 
-.form-label{
-    font-size:var(--cf-text-sm);
-    font-weight:var(--cf-weight-semibold);
-    color:var(--cf-text-secondary);
+.form-check-input:checked {
+  background-color: var(--cf-primary);
+  border-color: var(--cf-primary);
 }
 
-.form-check-input:checked{
-    background-color:var(--cf-primary);
-    border-color:var(--cf-primary);
-}
-
-/* Badges: tipografia compacta y consistente */
-.badge{
-    --bs-badge-font-size:var(--cf-text-xs);
-    --bs-badge-font-weight:var(--cf-weight-semibold);
-    --bs-badge-border-radius:var(--cf-radius-sm);
-}
-
-/* Tabs */
-.nav-tabs{
-    --bs-nav-tabs-border-color:var(--cf-border);
-    --bs-nav-tabs-link-active-color:var(--cf-primary);
-    --bs-nav-tabs-link-active-border-color:var(--cf-border) var(--cf-border) var(--cf-surface);
-    --bs-nav-link-color:var(--cf-text-muted);
-    --bs-nav-link-hover-color:var(--cf-primary);
-}
-
-/* Modales y alertas */
-.modal{
-    --bs-modal-border-radius:var(--cf-radius-xl);
-    --bs-modal-header-border-color:var(--cf-divider);
-    --bs-modal-footer-border-color:var(--cf-divider);
-}
-
-.alert{
-    --bs-alert-border-radius:var(--cf-radius-lg);
-}
-
-.alert-danger{
-    --bs-alert-color:var(--cf-danger-text);
-    --bs-alert-bg:var(--cf-danger-bg);
-    --bs-alert-border-color:var(--cf-danger-border);
-}
-
-.alert-success{
-    --bs-alert-color:var(--cf-success-text);
-    --bs-alert-bg:var(--cf-success-bg);
-    --bs-alert-border-color:var(--cf-success-border);
-}
-
-.alert-warning{
-    --bs-alert-color:var(--cf-warning-text);
-    --bs-alert-bg:var(--cf-warning-bg);
-    --bs-alert-border-color:var(--cf-warning-border);
-}
-
-.alert-info{
-    --bs-alert-color:var(--cf-info-text);
-    --bs-alert-bg:var(--cf-info-bg);
-    --bs-alert-border-color:var(--cf-info-border);
-}
-
-/* Tablas */
-.table{
-    --bs-table-color:var(--cf-text);
-    --bs-table-border-color:var(--cf-divider);
-    --bs-table-striped-bg:var(--cf-surface-muted);
-    --bs-table-hover-bg:var(--cf-primary-subtle);
-}
-
-/* Movimiento reducido: respeta la preferencia del sistema */
-@media (prefers-reduced-motion:reduce){
-    :root{
-        --cf-duration-fast:0ms;
-        --cf-duration-base:0ms;
-    }
+.form-check-input:focus {
+  border-color: var(--cf-primary);
+  box-shadow: var(--cf-focus-ring);
 }

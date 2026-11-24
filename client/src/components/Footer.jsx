@@ -1,12 +1,7 @@
-import '../css/footer.css'
 const Footer = () => {
   return (
-    <footer>
-      <p>
-        &copy; 2026 Panel de Control de Clientes | Trabajo Integrador
-        Programacion Visual - GRUPO 5
-      </p>
-
+    <footer className="cf-footer">
+      &copy; 2026 ClientFlow · Grupo 16 · Legislación y Ejercicio Profesional
     </footer>
   );
 };
