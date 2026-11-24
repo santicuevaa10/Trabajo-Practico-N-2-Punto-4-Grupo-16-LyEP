@@ -1,0 +1,335 @@
+/* ==========================================================================
+   Layout de la app con sesión: sidebar + topbar + contenido + footer.
+   Puntos de corte alineados con Bootstrap: md = 768px, lg = 992px.
+   ========================================================================== */
+
+:root {
+  --cf-sidebar-ancho: 240px;
+  --cf-sidebar-ancho-colapsada: 72px;
+  --cf-topbar-alto: 64px;
+}
+
+.cf-layout {
+  display: grid;
+  grid-template-columns: var(--cf-sidebar-ancho) minmax(0, 1fr);
+  min-height: 100vh;
+  background: var(--cf-bg);
+}
+
+/* --- Sidebar ------------------------------------------------------------ */
+.cf-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cf-space-4);
+  padding: var(--cf-space-4) var(--cf-space-3);
+  background: var(--cf-surface);
+  border-right: 1px solid var(--cf-border);
+}
+
+.cf-marca {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-space-3);
+  padding: var(--cf-space-2);
+  color: var(--cf-text);
+  font-size: var(--cf-fs-lg);
+  font-weight: var(--cf-fw-semibold);
+  text-decoration: none;
+}
+
+.cf-marca:hover {
+  color: var(--cf-text);
+}
+
+.cf-marca-logo {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--cf-radius-md);
+  background: var(--cf-primary);
+  color: var(--cf-on-primary);
+  font-size: var(--cf-fs-sm);
+  letter-spacing: .5px;
+}
+
+.cf-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--cf-space-1);
+}
+
+.cf-menu-link {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-space-3);
+  padding: 10px var(--cf-space-3);
+  border-radius: var(--cf-radius-md);
+  color: var(--cf-text-muted);
+  font-weight: var(--cf-fw-semibold);
+  font-size: var(--cf-fs-sm);
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+
+.cf-menu-link:hover {
+  background: var(--cf-primary-soft);
+  color: var(--cf-primary);
+}
+
+/* Ítem activo (NavLink agrega .active) */
+.cf-menu-link.active {
+  background: var(--cf-primary-muted);
+  color: var(--cf-primary-strong);
+}
+
+.cf-menu-link:focus-visible,
+.cf-marca:focus-visible,
+.cf-boton-menu:focus-visible,
+.cf-usuario-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--cf-focus-ring);
+}
+
+.cf-icono {
+  flex: 0 0 auto;
+}
+
+/* --- Columna principal -------------------------------------------------- */
+.cf-principal {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+.cf-contenido {
+  flex: 1;
+  padding: var(--cf-space-6);
+}
+
+/* --- Topbar ------------------------------------------------------------- */
+.cf-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1010; /* debajo de dropdowns y modales de Bootstrap */
+  display: flex;
+  align-items: center;
+  gap: var(--cf-space-4);
+  height: var(--cf-topbar-alto);
+  padding: 0 var(--cf-space-6);
+  background: var(--cf-surface);
+  border-bottom: 1px solid var(--cf-border);
+}
+
+.cf-topbar-titulo {
+  margin: 0;
+  color: var(--cf-text);
+  font-size: var(--cf-fs-lg);
+  font-weight: var(--cf-fw-semibold);
+  white-space: nowrap;
+}
+
+.cf-boton-menu {
+  display: none; /* solo en mobile */
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--cf-border);
+  border-radius: var(--cf-radius-md);
+  background: var(--cf-surface);
+  color: var(--cf-text);
+}
+
+.cf-buscador {
+  position: relative;
+  flex: 1;
+  min-width: 0; /* deja que el buscador se achique en pantallas angostas */
+  max-width: 420px;
+  margin-left: auto;
+  color: var(--cf-text-subtle);
+}
+
+.cf-buscador .cf-icono {
+  position: absolute;
+  left: var(--cf-space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.cf-buscador input {
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--cf-space-3) 0 40px;
+  border: 1px solid var(--cf-border-strong);
+  border-radius: var(--cf-radius-pill);
+  background: var(--cf-surface-alt);
+  color: var(--cf-text);
+  font-size: var(--cf-fs-sm);
+}
+
+.cf-buscador input::placeholder {
+  color: var(--cf-text-subtle);
+}
+
+.cf-buscador input:focus {
+  outline: none;
+  border-color: var(--cf-primary);
+  background: var(--cf-surface);
+  box-shadow: var(--cf-focus-ring);
+}
+
+/* Menú de usuario */
+.cf-usuario-toggle,
+.cf-usuario-toggle:hover,
+.cf-usuario-toggle:active,
+.cf-usuario-toggle.show {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-space-2);
+  padding: var(--cf-space-1) var(--cf-space-2);
+  border: 1px solid transparent;
+  border-radius: var(--cf-radius-pill);
+  background: transparent !important;
+  color: var(--cf-text) !important;
+  font-size: var(--cf-fs-sm);
+  font-weight: var(--cf-fw-semibold);
+}
+
+.cf-usuario-toggle:hover {
+  border-color: var(--cf-border);
+}
+
+.cf-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cf-primary-muted);
+  color: var(--cf-primary-strong);
+  font-size: var(--cf-fs-xs);
+}
+
+.cf-usuario-datos {
+  display: grid;
+  min-width: 200px;
+}
+
+.cf-usuario-datos span {
+  color: var(--cf-text-muted);
+  font-size: var(--cf-fs-sm);
+}
+
+.cf-usuario .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--cf-space-2);
+}
+
+/* --- Footer ------------------------------------------------------------- */
+.cf-footer {
+  padding: var(--cf-space-3) var(--cf-space-6);
+  border-top: 1px solid var(--cf-border);
+  color: var(--cf-text-subtle);
+  font-size: var(--cf-fs-xs);
+  text-align: center;
+}
+
+/* --- Offcanvas (mobile) ------------------------------------------------- */
+.cf-offcanvas {
+  --bs-offcanvas-width: var(--cf-sidebar-ancho);
+}
+
+.cf-offcanvas .offcanvas-title {
+  padding: 0;
+}
+
+/* --- Tablet: sidebar colapsada a íconos --------------------------------- */
+@media (max-width: 991.98px) {
+  .cf-layout {
+    grid-template-columns: var(--cf-sidebar-ancho-colapsada) minmax(0, 1fr);
+  }
+
+  .cf-sidebar {
+    padding: var(--cf-space-4) var(--cf-space-2);
+    align-items: center;
+  }
+
+  .cf-sidebar .cf-marca-texto,
+  .cf-sidebar .cf-menu-texto {
+    /* Ocultos a la vista pero no para lectores de pantalla */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .cf-sidebar .cf-menu-link {
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+  }
+
+  .cf-usuario-nombre {
+    display: none;
+  }
+}
+
+/* --- Mobile: sin sidebar, menú en offcanvas ----------------------------- */
+@media (max-width: 767.98px) {
+  .cf-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cf-sidebar {
+    display: none;
+  }
+
+  .cf-boton-menu {
+    display: inline-flex;
+  }
+
+  .cf-topbar {
+    gap: var(--cf-space-2);
+    padding: 0 var(--cf-space-3);
+  }
+
+  .cf-topbar-titulo {
+    font-size: var(--cf-fs-md);
+  }
+
+  .cf-buscador {
+    max-width: none;
+  }
+
+  .cf-contenido {
+    padding: var(--cf-space-4);
+  }
+}
+
+/* Pantallas muy angostas (~360px): el buscador tiene prioridad sobre el
+   nombre de la sección, que igual aparece como título de cada página. */
+@media (max-width: 479.98px) {
+  .cf-topbar-titulo {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-menu-link {
+    transition: none;
+  }
+}
