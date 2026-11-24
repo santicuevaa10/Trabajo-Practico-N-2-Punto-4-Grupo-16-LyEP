@@ -1,8 +1,8 @@
 .alertas-container {
-    background: white;
+    background: var(--cf-surface);
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0px 10px 25px rgba(214, 51, 132, .10);
+    border-radius: var(--cf-radius-lg);
+    box-shadow: var(--cf-shadow-1);
 }
 
 .alertas-container h1 {
@@ -12,16 +12,16 @@
 
 .alertas-resumen {
     text-align: center;
-    font-size: 18px;
+    font-size: var(--cf-fs-lg);
 }
 
 .alertas-estado {
     text-align: center;
-    color: #718096;
+    color: var(--cf-text-subtle);
     margin-top: 20px;
 }
 
 .badge-estado {
-    font-size: 14px;
+    font-size: var(--cf-fs-sm);
     padding: 6px 12px;
 }

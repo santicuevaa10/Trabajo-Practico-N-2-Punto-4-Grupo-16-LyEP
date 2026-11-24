@@ -1,17 +1,17 @@
 .btn-registrar-visita{
     display:inline-block;
-    background:white;
-    color:#d63384;
-    border:2px solid #d63384;
+    background:var(--cf-surface);
+    color:var(--cf-primary);
+    border:2px solid var(--cf-primary);
     padding:6px 14px;
-    border-radius:10px;
+    border-radius:var(--cf-radius-md);
     font-weight:600;
     transition:.25s;
 }
 
 .btn-registrar-visita:hover{
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary);
+    color:var(--cf-on-primary);
 }
 
 .nota-visita{
@@ -19,12 +19,12 @@
     gap:4px;
     width:100%;
     font-weight:600;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
 }
 
 .nota-visita textarea{
-    border:1px solid #f1c4d8;
-    border-radius:8px;
+    border:1px solid var(--cf-border-strong);
+    border-radius:var(--cf-radius-sm);
     padding:8px 10px;
     font-weight:normal;
     resize:none;
@@ -32,14 +32,14 @@
 
 .contador-nota{
     justify-self:end;
-    font-size:12px;
+    font-size:var(--cf-fs-xs);
     font-weight:normal;
-    color:#8a7681;
+    color:var(--cf-text-subtle);
 }
 
 .instruccion-visita{
     margin:15px 0 10px;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
 }
 
 /* 2x2 de botones grandes, faciles de tocar en el celular */
@@ -56,13 +56,13 @@
     justify-content:center;
     gap:6px;
     min-height:96px;
-    font-size:18px;
+    font-size:var(--cf-fs-lg);
     font-weight:600;
-    border-radius:14px;
+    border-radius:var(--cf-radius-md);
 }
 
 .icono-resultado{
-    font-size:28px;
+    font-size:var(--cf-fs-xl);
     line-height:1;
 }
 

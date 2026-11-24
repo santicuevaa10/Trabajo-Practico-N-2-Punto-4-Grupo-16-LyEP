@@ -1,15 +1,15 @@
 .condicion-vigente{
-    background:linear-gradient(135deg,#d63384,#c2185b);
-    color:white;
-    border-radius:18px;
+    background:linear-gradient(135deg,var(--cf-primary),var(--cf-primary-hover));
+    color:var(--cf-on-primary);
+    border-radius:var(--cf-radius-lg);
     padding:22px 25px;
-    box-shadow:0px 10px 25px rgba(214,51,132,.25);
+    box-shadow:var(--cf-shadow-2);
 }
 
 .condicion-vigente-titulo{
     text-transform:uppercase;
     letter-spacing:.08em;
-    font-size:13px;
+    font-size:var(--cf-fs-xs);
     opacity:.85;
 }
 
@@ -22,26 +22,26 @@
 
 .condicion-vigente-valores .valor{
     display:block;
-    font-size:30px;
+    font-size:var(--cf-fs-xl);
     font-weight:bold;
 }
 
 .condicion-vigente-valores .rotulo{
-    font-size:14px;
+    font-size:var(--cf-fs-sm);
     opacity:.85;
 }
 
 .detalle-cliente .condicion-vigente-detalle,
 .detalle-cliente .condicion-vigente-detalle strong{
-    color:white;
+    color:var(--cf-on-primary);
     margin:0;
 }
 
 .sin-condicion,
 .modo-lectura{
-    background:#fff5f9;
-    border:1px solid #ffd6e7;
-    border-radius:12px;
+    background:var(--cf-primary-soft);
+    border:1px solid var(--cf-border);
+    border-radius:var(--cf-radius-md);
     padding:12px 15px;
 }
 
@@ -55,18 +55,18 @@
     gap:12px;
     margin-top:20px;
     padding:20px;
-    border:2px dashed #ffd6e7;
-    border-radius:16px;
+    border:2px dashed var(--cf-border);
+    border-radius:var(--cf-radius-lg);
 }
 
 .form-condicion h3{
-    font-size:18px;
-    color:#c2185b;
+    font-size:var(--cf-fs-lg);
+    color:var(--cf-primary-strong);
     margin:0;
 }
 
 .detalle-cliente .aviso-append-only{
-    font-size:14px;
+    font-size:var(--cf-fs-sm);
     margin:0;
 }
 
@@ -79,23 +79,23 @@
 .form-condicion label{
     display:grid;
     gap:4px;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
     font-weight:600;
 }
 
 .form-condicion input,
 .form-condicion textarea{
-    border:1px solid #f1c4d8;
-    border-radius:8px;
+    border:1px solid var(--cf-border-strong);
+    border-radius:var(--cf-radius-sm);
     padding:8px 10px;
     font-weight:normal;
 }
 
 .form-condicion button{
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary);
+    color:var(--cf-on-primary);
     border:none;
-    border-radius:10px;
+    border-radius:var(--cf-radius-md);
     padding:10px 20px;
     font-weight:600;
 }
@@ -105,13 +105,13 @@
 }
 
 .detalle-cliente .error-condicion{
-    color:#dc3545;
+    color:var(--cf-danger-text);
     font-weight:600;
 }
 
 .titulo-historial{
-    font-size:20px;
-    color:#c2185b;
+    font-size:var(--cf-fs-lg);
+    color:var(--cf-primary-strong);
     margin-top:30px;
 }
 
@@ -130,15 +130,15 @@
     top:6px;
     bottom:6px;
     width:2px;
-    background:#ffd6e7;
+    background:var(--cf-primary-muted);
 }
 
 .hito{
     position:relative;
     padding:10px 15px;
     margin-bottom:14px;
-    border-radius:12px;
-    background:#fafafa;
+    border-radius:var(--cf-radius-md);
+    background:var(--cf-surface-alt);
 }
 
 .hito::before{
@@ -149,23 +149,23 @@
     width:14px;
     height:14px;
     border-radius:50%;
-    background:#ccc;
-    border:3px solid white;
-    box-shadow:0 0 0 2px #ccc;
+    background:var(--cf-neutral-300);
+    border:3px solid var(--cf-surface);
+    box-shadow:0 0 0 2px var(--cf-neutral-300);
 }
 
 .hito-vigente{
-    background:#fff5f9;
+    background:var(--cf-primary-soft);
 }
 
 .hito-vigente::before{
-    background:#d63384;
-    box-shadow:0 0 0 2px #d63384;
+    background:var(--cf-primary);
+    box-shadow:0 0 0 2px var(--cf-primary);
 }
 
 .hito-programada::before{
-    background:white;
-    box-shadow:0 0 0 2px #d63384;
+    background:var(--cf-surface);
+    box-shadow:0 0 0 2px var(--cf-primary);
 }
 
 .hito-encabezado{
@@ -183,28 +183,28 @@
 }
 
 .hito small{
-    color:#8a7681;
+    color:var(--cf-text-subtle);
 }
 
 .etiqueta-estado{
-    font-size:12px;
+    font-size:var(--cf-fs-xs);
     font-weight:600;
-    border-radius:20px;
+    border-radius:var(--cf-radius-pill);
     padding:2px 10px;
 }
 
 .etiqueta-vigente{
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary);
+    color:var(--cf-on-primary);
 }
 
 .etiqueta-programada{
-    background:white;
-    color:#d63384;
-    border:1px solid #d63384;
+    background:var(--cf-surface);
+    color:var(--cf-primary);
+    border:1px solid var(--cf-primary);
 }
 
 .etiqueta-reemplazada{
-    background:#eee;
-    color:#777;
+    background:var(--cf-neutral-100);
+    color:var(--cf-text-subtle);
 }
