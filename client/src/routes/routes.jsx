@@ -7,6 +7,7 @@ import DetalleCliente from '../pages/DetalleCliente'
 import Alertas from '../pages/Alertas'
 import ErrorPage from '../pages/ErrorPage'
 import Importar from '../pages/Importar'
+import Metricas from '../pages/Metricas'
 import RutaProtegida from '../components/RutaProtegida'
 const AppRoutes = () => {
   return (
@@ -50,6 +51,14 @@ const AppRoutes = () => {
         element={
           <RutaProtegida>
             <Importar />
+          </RutaProtegida>
+        }
+      />
+      <Route
+        path="/metricas"
+        element={
+          <RutaProtegida>
+            <Metricas />
           </RutaProtegida>
         }
       />
