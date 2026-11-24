@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
 import mongoose from 'mongoose';
 import clientesRoutes from './routes/ClientesRoutes.js';
 import alertasRoutes from './routes/alertasRoutes.js';
@@ -8,12 +7,16 @@ import metricasRoutes from './routes/MetricasRoutes.js';
 import importacionesRoutes from './routes/ImportacionesRoutes.js';
 import exportacionesRoutes from './routes/ExportacionesRoutes.js';
 import { manejadorErrores } from './middleware/errorHandler.js';
+import { headersSeguridad, corsRestringido, limitarEscrituras } from './middleware/seguridad.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(headersSeguridad());
+app.use(corsRestringido());
 app.use(express.json());
+// Despues de CORS: un 429 tambien lleva los headers CORS y el frontend puede leer el error.
+app.use(limitarEscrituras());
 
 app.get('/', (req, res) => {
   res.json({ status: 'ok', servicio: 'ClientFlow API' });
