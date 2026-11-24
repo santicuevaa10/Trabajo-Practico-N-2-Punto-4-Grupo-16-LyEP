@@ -29,6 +29,13 @@ const Nav = () => {
                         </NavLink>
                     </li>
                 )}
+                {esGerencia && (
+                    <li>
+                        <NavLink to="/metricas">
+                            Métricas
+                        </NavLink>
+                    </li>
+                )}
             </ul>
         </nav>
     );

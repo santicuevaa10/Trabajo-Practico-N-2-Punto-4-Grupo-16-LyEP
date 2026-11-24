@@ -31,3 +31,13 @@ Terminal 1 - Backend: cd server && npm run dev (Puerto 3001)
 Terminal 2 - Frontend: cd client && npm run dev (Puerto 5173)
 
 Nota: si no se configura server/ ni se cambia VITE_API_URL, la app sigue funcionando igual que siempre contra FakeStoreAPI. El backend propio es opcional para quien solo quiera correr el frontend.
+## Exportar mis datos
+
+El backend permite exportar todos los datos del servicio (clientes, documentos, condiciones comerciales y visitas). Nunca incluye contraseñas.
+
+GET /exportaciones/clientes?formato=csv  -> clientflow-export-AAAA-MM-DD.zip (un .csv por entidad)
+GET /exportaciones/clientes?formato=json -> clientflow-export-AAAA-MM-DD.json
+
+La respuesta se genera en streaming (cursor de MongoDB -> respuesta HTTP), así que no carga toda la base en memoria. Si una colección todavía no existe, se exporta vacía. Los nombres de colección se configuran en server/utils/exportacion.js (ENTIDADES).
+
+En el frontend, el botón "Exportar mis datos" del Dashboard solo aparece para usuarios de Gerencia. Requiere el backend propio (VITE_API_URL=http://localhost:3001); contra FakeStoreAPI muestra un mensaje de error.

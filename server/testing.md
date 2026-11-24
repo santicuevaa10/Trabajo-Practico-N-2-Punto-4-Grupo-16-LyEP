@@ -46,3 +46,13 @@
 - [ ] Confirmar crea/actualiza esas filas y saltea las inválidas; reimportar el mismo archivo da 0 creados y 0 actualizados
 - [ ] Un archivo de más de 2 MB devuelve 413; uno que no es .csv o sin columna E_MAIL devuelve 400
 - [ ] Con sector Soporte no aparece el link "Importar" y /importar muestra que no tiene permiso
+
+## Métricas (bloque 8)
+
+- [ ] GET /metricas/resumen devuelve `clientesActivos` (total y `porSucursal` con las 3 sucursales aunque tengan 0), `tasaRetencionMensual`, `clientesRecuperados`, `vendedoresActivosSemana` y `documentosPorVencer`
+- [ ] Registrar una visita con `"resultado": "pedido"` suma al cliente en el mes actual: si también compró el mes anterior, sube `retenidos`
+- [ ] Sin compras el mes anterior, `tasaRetencionMensual.tasa` es `null` (la pantalla muestra "—")
+- [ ] Un documento que vence en los próximos 30 días suma en `documentosPorVencer`; uno ya vencido no
+- [ ] `vendedoresActivosSemana.cantidad` coincide con GET /metricas/vendedores-activos de la semana actual
+- [ ] `npm test` en server corre los casos límite de `tests/metricasService.test.js`
+- [ ] En /metricas (solo Gerencia) se ven las 5 tarjetas y el gráfico de barras por sucursal; con sector Soporte no aparece el link "Métricas" y /metricas muestra que no tiene permiso
