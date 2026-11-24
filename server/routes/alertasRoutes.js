@@ -6,18 +6,21 @@ import {
   calcularRiesgo,
   obtenerUmbrales
 } from '../services/alertasService.js';
+import { alertasDocumentos } from '../controllers/alertasController.js';
 
 const router = Router();
 
-// Tipos de alerta disponibles. "documentos" se suma con el control documental.
-const TIPOS = ['inactividad'];
+// Tipos de alerta disponibles.
+const TIPOS = ['inactividad', 'documentos'];
 
 const nombreCompleto = ({ name } = {}) =>
   [name?.firstname, name?.lastname]
     .filter((parte) => parte && parte !== '-')
     .join(' ');
 
-// GET /alertas?tipo=inactividad
+// GET /alertas?tipo=documentos&dias=30 -> ver controllers/alertasController.js
+//
+// GET /alertas?tipo=inactividad (tipo por defecto)
 // Devuelve los clientes en_riesgo e inactivo, los de mas dias sin compra
 // primero (los que no tienen ninguna fecha van arriba de todo).
 router.get('/', async (req, res, next) => {
@@ -26,6 +29,7 @@ router.get('/', async (req, res, next) => {
     if (!TIPOS.includes(tipo)) {
       return res.status(400).json({ error: `Tipo de alerta invalido. Valores posibles: ${TIPOS.join(', ')}` });
     }
+    if (tipo === 'documentos') return alertasDocumentos(req, res, next);
 
     const clientes = await Cliente
       .find({}, 'name sucursal ultimaCompra createdAt')

@@ -2,9 +2,11 @@ import "../css/listaclientes.css"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import FormCliente from "../components/FormCliente";
+import RegistrarVisita from "../components/RegistrarVisita";
 // COMMIT: "refactor: extraer la carga de clientes a un hook useClientes"
 // (antes: este import no existia, tampoco useEffect en este archivo)
 import useClientes from "../hooks/useClientes";
+import { ESTADOS_DOCUMENTALES } from "../utils/estadoDocumental";
 
 // Mismos valores que el enum de server/models/Cliente.js
 const SUCURSALES = ["Casa Central", "Sucursal Norte", "Sucursal Sur"];
@@ -17,7 +19,7 @@ const ListaClientes = () => {
   // "fix: usar optional chaining..." (5), "fix: refrescar la lista..." (6),
   // "fix: cancelar peticiones fetch..." (7) y
   // "refactor: centralizar llamadas HTTP en clientesService" (11))
-  const { clientes, loading, error, agregarCliente } = useClientes();
+  const { clientes, loading, error, agregarCliente, actualizarCliente } = useClientes();
   const [busqueda, setBusqueda] = useState("");
   const [sucursal, setSucursal] = useState("");
 
@@ -102,6 +104,7 @@ const ListaClientes = () => {
             <th>Teléfono</th>
             <th>Ciudad</th>
             <th>Sucursal</th>
+            <th>Documentación</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -127,13 +130,32 @@ const ListaClientes = () => {
 
               <td>{cliente.sucursal ?? "-"}</td>
 
-              <td>
+              <td className="celda-estado-doc">
+                {ESTADOS_DOCUMENTALES[cliente.estadoDocumental] ? (
+                  <span
+                    className={`icono-estado-doc estado-${cliente.estadoDocumental}`}
+                    title={ESTADOS_DOCUMENTALES[cliente.estadoDocumental].etiqueta}
+                    aria-label={ESTADOS_DOCUMENTALES[cliente.estadoDocumental].etiqueta}
+                    role="img"
+                  >
+                    {ESTADOS_DOCUMENTALES[cliente.estadoDocumental].icono}
+                  </span>
+                ) : (
+                  "-"
+                )}
+              </td>
+
+              <td className="celda-acciones">
                 <Link
                   className="btn-ficha"
                   to={`/clientes/${cliente.id}`}
                 >
                   Ver Ficha Completa
                 </Link>
+                <RegistrarVisita
+                  cliente={cliente}
+                  onRegistrada={({ cliente: actualizado }) => actualizarCliente(actualizado)}
+                />
               </td>
 
             </tr>

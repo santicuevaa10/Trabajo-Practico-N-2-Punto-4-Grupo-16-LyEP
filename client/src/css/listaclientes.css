@@ -128,6 +128,33 @@ input[type="text"]{
 input[type="text"]::placeholder{
     color:#c78aa6;
 } 
+/* --- Estado documental --- */
+.celda-estado-doc{
+    text-align:center;
+}
+
+.icono-estado-doc{
+    display:inline-block;
+    width:28px;
+    height:28px;
+    line-height:28px;
+    border-radius:50%;
+    color:white;
+    font-weight:bold;
+    cursor:help;
+}
+
+.icono-estado-doc.estado-ok{ background:#198754; }
+.icono-estado-doc.estado-por_vencer{ background:#e0a800; }
+.icono-estado-doc.estado-vencido{ background:#dc3545; }
+
+.celda-acciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+}
+
 .filtro-sucursal{
     display:block;
     color:white;

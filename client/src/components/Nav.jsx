@@ -1,6 +1,9 @@
 import '../css/nav.css'
 import { NavLink } from 'react-router-dom'
+import useAutorizaciones from '../hooks/useAutorizaciones'
 const Nav = () => {
+    const { admin } = useAutorizaciones();
+    const esGerencia = admin?.sector?.trim() === 'Gerencia';
     return (
         <nav className="nav">
             <ul className="nav-lista">
@@ -19,6 +22,13 @@ const Nav = () => {
                         Alertas
                     </NavLink>
                 </li>
+                {esGerencia && (
+                    <li>
+                        <NavLink to="/importar">
+                            Importar
+                        </NavLink>
+                    </li>
+                )}
             </ul>
         </nav>
     );

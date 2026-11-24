@@ -38,7 +38,15 @@ const useClientes = () => {
     setClientes((previos) => [...previos, cliente]);
   };
 
-  return { clientes, loading, error, agregarCliente };
+  // Reemplaza un cliente de la lista por su version actualizada
+  // (por ejemplo, despues de registrar una visita).
+  const actualizarCliente = (actualizado) => {
+    setClientes((previos) =>
+      previos.map((c) => (c.id === actualizado.id ? actualizado : c))
+    );
+  };
+
+  return { clientes, loading, error, agregarCliente, actualizarCliente };
 };
 
 export default useClientes;
