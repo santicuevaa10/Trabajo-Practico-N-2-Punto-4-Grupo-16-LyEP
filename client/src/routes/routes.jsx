@@ -5,6 +5,7 @@ import Dashboard from '../pages/Dashboard'
 import ListaClientes from '../pages/ListaClientes'
 import DetalleCliente from '../pages/DetalleCliente'
 import ErrorPage from '../pages/ErrorPage'
+import Importar from '../pages/Importar'
 import RutaProtegida from '../components/RutaProtegida'
 const AppRoutes = () => {
   return (
@@ -34,6 +35,14 @@ const AppRoutes = () => {
           <DetalleCliente />
          </RutaProtegida>
       }
+      />
+      <Route
+        path="/importar"
+        element={
+          <RutaProtegida>
+            <Importar />
+          </RutaProtegida>
+        }
       />
       <Route path="*" element={<ErrorPage />} />
 
