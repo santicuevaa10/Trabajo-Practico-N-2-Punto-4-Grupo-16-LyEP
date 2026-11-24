@@ -1,0 +1,11 @@
+{
+  "E_MAIL": "email",
+  "RAZON_SOCI": "name.firstname",
+  "NOM_FANTAS": "name.lastname",
+  "TELEFONO_1": "phone",
+  "DOMICILIO": "address.street",
+  "NRO_DOMIC": "address.number",
+  "C_POSTAL": "address.zipcode",
+  "LOCALIDAD": "address.city",
+  "SUCURSAL": "sucursal"
+}

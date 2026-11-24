@@ -1,0 +1,6 @@
+COD_CLIENT;RAZON_SOCI;NOM_FANTAS;E_MAIL;TELEFONO_1;DOMICILIO;NRO_DOMIC;C_POSTAL;LOCALIDAD;SUCURSAL
+000101;Farmacia;Central;farmacia.central@ejemplo.com;3884009999;Av. Belgrano;450;4600;San Salvador de Jujuy;Sucursal Jujuy
+000245;Farmacia del Sol;Sol;contacto@farmaciadelsol.ejemplo.com;3874112233;Caseros;1250;4400;Salta;Sucursal Salta
+000246;Droguería Andina;Andina;ventas@drogueriaandina.ejemplo.com;3816554433;Av. Mate de Luna;2100;4000;San Miguel de Tucumán;Casa Central
+000247;Farmacia Los Lapachos;Lapachos;lapachos.ejemplo.com;3884776655;Senador Pérez;88;4600;San Salvador de Jujuy;Sucursal Jujuy
+000248;Farmacia San Roque;San Roque;sanroque@ejemplo.com;3855223344;Av. Belgrano Sur;610;4200;;Casa Central
