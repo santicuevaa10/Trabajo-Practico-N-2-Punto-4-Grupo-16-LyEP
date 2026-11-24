@@ -17,6 +17,11 @@ const Nav = () => {
                         Clientes
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to="/alertas">
+                        Alertas
+                    </NavLink>
+                </li>
                 {esGerencia && (
                     <li>
                         <NavLink to="/importar">

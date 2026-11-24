@@ -22,6 +22,10 @@ const transformarJSON = {
   }
 };
 
+// Sucursales validas de la distribuidora. Se exporta para reutilizarla en
+// la validacion de requests y en el resumen por sucursal.
+export const SUCURSALES = ['Casa Central', 'Sucursal Norte', 'Sucursal Sur'];
+
 const documentoSchema = new mongoose.Schema({
   tipo: { type: String, enum: TIPOS_DOCUMENTO, required: true },
   numero: { type: String, default: '' },
@@ -45,11 +49,13 @@ const clienteSchema = new mongoose.Schema({
     city: { type: String, required: true }
   },
   phone: { type: String, required: true },
-  sucursal: { type: String, default: 'Casa Central' },
+  sucursal: { type: String, enum: SUCURSALES, default: 'Casa Central' },
   documentos: { type: [documentoSchema], default: [] },
-  // Se actualizan solos al registrar una visita (POST /users/:id/visitas).
-  ultimaVisita: { type: Date, default: null },
-  ultimaCompra: { type: Date, default: null }
+  // Opcionales: alimentan las alertas de inactividad (services/alertasService.js).
+  // Se actualizan solos al registrar una visita (POST /users/:id/visitas) y
+  // tambien se pueden editar con PUT /users/:id.
+  ultimaCompra: { type: Date },
+  ultimaVisita: { type: Date }
 }, { timestamps: true });
 
 // Estado documental del cliente: el peor estado entre todos sus documentos.

@@ -13,7 +13,7 @@
 - [ ] DELETE /users/:id/documentos/:docId quita el documento y devuelve el cliente actualizado
 - [ ] GET /users/:id incluye `estadoDocumental`: "ok" sin documentos o todos vigentes, "por_vencer" si alguno vence en 30 días o menos, "vencido" si alguno ya venció
 - [ ] GET /alertas?tipo=documentos&dias=30 devuelve `vencidos` y `porVencer`, ordenados por urgencia
-- [ ] GET /alertas sin `tipo=documentos` o con `dias` negativo devuelve 400
+- [ ] GET /alertas?tipo=documentos con `dias` negativo, o con un `tipo` desconocido, devuelve 400 (sin `tipo` devuelve las alertas de inactividad)
 - [ ] En la ficha de un cliente con un documento vencido aparece el banner rojo "no habilitado para venta"
 - [ ] El formulario de alta y el botón "Quitar" solo aparecen con sector Gerencia
 - [ ] La lista de clientes muestra el ícono de estado documental de cada cliente
@@ -41,7 +41,7 @@
 
 ## Importación de clientes desde CSV del ERP
 
-- [ ] En /importar (solo Gerencia), subir `server/documents/ejemplo-tango.csv` con el seed cargado: la simulación muestra 2 a crear, 1 a actualizar y 2 errores (email inválido en la fila 5, falta LOCALIDAD en la fila 6)
+- [ ] En /importar (solo Gerencia), subir `server/documents/ejemplo-tango.csv` con el seed cargado (sucursales del enum: Casa Central, Sucursal Norte, Sucursal Sur): la simulación muestra 2 a crear, 1 a actualizar y 2 errores (email inválido en la fila 5, falta LOCALIDAD en la fila 6)
 - [ ] La simulación no escribe nada en la base
 - [ ] Confirmar crea/actualiza esas filas y saltea las inválidas; reimportar el mismo archivo da 0 creados y 0 actualizados
 - [ ] Un archivo de más de 2 MB devuelve 413; uno que no es .csv o sin columna E_MAIL devuelve 400

@@ -8,6 +8,9 @@ import RegistrarVisita from "../components/RegistrarVisita";
 import useClientes from "../hooks/useClientes";
 import { ESTADOS_DOCUMENTALES } from "../utils/estadoDocumental";
 
+// Mismos valores que el enum de server/models/Cliente.js
+const SUCURSALES = ["Casa Central", "Sucursal Norte", "Sucursal Sur"];
+
 const ListaClientes = () => {
   // COMMIT: "refactor: extraer la carga de clientes a un hook useClientes"
   // (antes aca estaban useState de clientes/loading/error + el useEffect con
@@ -18,17 +21,21 @@ const ListaClientes = () => {
   // "refactor: centralizar llamadas HTTP en clientesService" (11))
   const { clientes, loading, error, agregarCliente, actualizarCliente } = useClientes();
   const [busqueda, setBusqueda] = useState("");
+  const [sucursal, setSucursal] = useState("");
 
   // COMMIT: "fix: usar optional chaining en el filtro y la tabla de clientes"
   // (antes: cliente.name.lastname.toLowerCase()... sin los ?.)
+  // El filtro por sucursal se hace sobre la lista ya cargada (sin otra
+  // request), asi funciona igual con el backend propio y con FakeStoreAPI.
   const clientesFiltrados = clientes.filter(
     (cliente) =>
-      cliente.name?.lastname
+      (sucursal === "" || cliente.sucursal === sucursal) &&
+      (cliente.name?.lastname
         ?.toLowerCase()
         .includes(busqueda.toLowerCase()) ||
       cliente.address?.city
         ?.toLowerCase()
-        .includes(busqueda.toLowerCase())
+        .includes(busqueda.toLowerCase()))
   );
 
   if (loading) {
@@ -63,6 +70,22 @@ const ListaClientes = () => {
           onChange={(e) => setBusqueda(e.target.value)}
         />
 
+        <label className="filtro-sucursal">
+          Sucursal
+          <select
+            className="buscador"
+            value={sucursal}
+            onChange={(e) => setSucursal(e.target.value)}
+          >
+            <option value="">Todas las sucursales</option>
+            {SUCURSALES.map((nombre) => (
+              <option key={nombre} value={nombre}>
+                {nombre}
+              </option>
+            ))}
+          </select>
+        </label>
+
         <p className="cantidad-clientes">
           Clientes encontrados: {clientesFiltrados.length}
         </p>
@@ -80,6 +103,7 @@ const ListaClientes = () => {
             <th>Email</th>
             <th>Teléfono</th>
             <th>Ciudad</th>
+            <th>Sucursal</th>
             <th>Documentación</th>
             <th>Acciones</th>
           </tr>
@@ -103,6 +127,8 @@ const ListaClientes = () => {
               <td>{cliente.phone}</td>
 
               <td>{cliente.address?.city}</td>
+
+              <td>{cliente.sucursal ?? "-"}</td>
 
               <td className="celda-estado-doc">
                 {ESTADOS_DOCUMENTALES[cliente.estadoDocumental] ? (

@@ -2,16 +2,13 @@ import Cliente, { DIAS_AVISO_VENCIMIENTO, estadoDeVencimiento } from '../models/
 
 const MS_POR_DIA = 24 * 60 * 60 * 1000;
 
-// GET /alertas?tipo=documentos&dias=30
+// GET /alertas?tipo=documentos&dias=30 (lo despacha routes/alertasRoutes.js)
 // Devuelve los documentos ya vencidos y los que vencen dentro de los proximos N dias,
 // ordenados por fecha de vencimiento (los mas urgentes primero).
-export const listarAlertas = async (req, res, next) => {
+export const alertasDocumentos = async (req, res, next) => {
   try {
-    const { tipo, dias = DIAS_AVISO_VENCIMIENTO } = req.query;
-
-    if (tipo !== 'documentos') {
-      return res.status(400).json({ error: 'Parametro "tipo" invalido. Valores admitidos: documentos' });
-    }
+    const { dias = DIAS_AVISO_VENCIMIENTO } = req.query;
+    const tipo = 'documentos';
 
     const diasNum = Number(dias);
     if (!Number.isInteger(diasNum) || diasNum < 0) {

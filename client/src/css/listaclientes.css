@@ -154,3 +154,14 @@ input[type="text"]::placeholder{
     gap:8px;
     align-items:center;
 }
+
+.filtro-sucursal{
+    display:block;
+    color:white;
+    font-weight:600;
+    margin-top:12px;
+}
+
+.filtro-sucursal .buscador{
+    margin-top:6px;
+}

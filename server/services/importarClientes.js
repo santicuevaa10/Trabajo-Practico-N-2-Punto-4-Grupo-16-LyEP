@@ -49,7 +49,11 @@ const motivoDeValidacion = (error, columnaDeCampo) =>
   Object.values(error.errors)
     .map((e) => {
       const columna = columnaDeCampo[e.path] ?? e.path;
-      return e.kind === 'required' ? `Falta ${columna}` : `${columna}: ${e.message}`;
+      if (e.kind === 'required') return `Falta ${columna}`;
+      if (e.kind === 'enum') {
+        return `${columna} invalido: "${e.value}". Valores posibles: ${e.properties.enumValues.join(', ')}`;
+      }
+      return `${columna}: ${e.message}`;
     })
     .join('; ');
 

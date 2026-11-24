@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Modal, Button, Tabs, Tab } from "react-bootstrap";
 import useAutorizaciones from "../hooks/useAutorizaciones";
 import clientesService from '../services/clientesService';
+import FormCliente from "../components/FormCliente";
 import CondicionesComerciales from "../components/CondicionesComerciales";
 import RegistrarVisita from "../components/RegistrarVisita";
 import HistorialVisitas from "../components/HistorialVisitas";
@@ -35,6 +36,13 @@ const DetalleCliente = () => {
   const [nuevoDocumento, setNuevoDocumento] = useState(DOCUMENTO_VACIO);
   const [errorDocumento, setErrorDocumento] = useState("");
   const [guardandoDocumento, setGuardandoDocumento] = useState(false);
+  const [editando, setEditando] = useState(false);
+
+  const manejarClienteActualizado = (clienteActualizado) => {
+    setCliente(clienteActualizado);
+    setEditando(false);
+    setMensaje("Cliente actualizado correctamente");
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -142,6 +150,25 @@ const DetalleCliente = () => {
 
       <Tabs defaultActiveKey="ficha" mountOnEnter className="pestanas-cliente">
         <Tab eventKey="ficha" title="Ficha">
+          {editando ? (
+            <FormCliente
+              clienteInicial={cliente}
+              onClienteActualizado={manejarClienteActualizado}
+              onCancelar={() => setEditando(false)}
+            />
+          ) : (
+            <Button
+              className="mb-3"
+              variant="primary"
+              onClick={() => {
+                setMensaje("");
+                setEditando(true);
+              }}
+            >
+              Editar Cliente
+            </Button>
+          )}
+
           <p>
             <strong>ID:</strong> {cliente.id}
           </p>

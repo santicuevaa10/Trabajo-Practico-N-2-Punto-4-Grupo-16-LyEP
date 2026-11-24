@@ -65,3 +65,34 @@
     color: #d63384;
 }
 
+
+.dashboard-sucursales {
+    margin-top: 10px;
+}
+.dashboard-sucursales h2 {
+    margin-bottom: 5px;
+}
+.sucursales-estado {
+    color: #718096;
+    margin-top: 15px;
+}
+/* El nombre de la sucursal es mas largo que "Clientes": se achica el titulo */
+.kpi-sucursal h3 {
+    font-size: 22px;
+}
+.kpi-nuevos {
+    display: block;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* La tarjeta de alertas es un link: sin subrayado y con el mismo look */
+.kpi-alertas {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+.kpi-alertas:focus-visible {
+    outline: 3px solid #c2185b;
+    outline-offset: 3px;
+}
