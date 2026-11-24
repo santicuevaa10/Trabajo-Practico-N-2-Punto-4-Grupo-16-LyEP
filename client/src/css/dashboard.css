@@ -96,3 +96,18 @@
     outline: 3px solid #c2185b;
     outline-offset: 3px;
 }
+
+.exportar-datos {
+    max-width: 500px;
+    margin: 10px auto 0;
+}
+.btn-exportar,
+.btn-exportar:hover,
+.btn-exportar:focus,
+.btn-exportar:disabled {
+    background: #d63384;
+    border-color: #d63384;
+}
+.btn-exportar:hover {
+    background: #c2185b;
+}

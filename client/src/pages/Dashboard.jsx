@@ -1,6 +1,9 @@
 import '../css/dashboard.css'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Dropdown, Spinner, Alert } from 'react-bootstrap'
 import useAutorizaciones from '../hooks/useAutorizaciones'
+import exportacionesService from '../services/exportacionesService'
 import useResumenSucursales from '../hooks/useResumenSucursales'
 import useAlertas from '../hooks/useAlertas'
 
@@ -10,6 +13,23 @@ const Dashboard = () => {
   const alertas = useAlertas('inactividad')
   const enRiesgo = alertas.alertas.filter((a) => a.estado === 'en_riesgo').length
   const inactivos = alertas.alertas.filter((a) => a.estado === 'inactivo').length
+  const esGerencia = admin?.sector?.trim() === 'Gerencia'
+
+  const [exportando, setExportando] = useState(false)
+  const [errorExportacion, setErrorExportacion] = useState('')
+
+  const exportar = async (formato) => {
+    setErrorExportacion('')
+    setExportando(true)
+    try {
+      const { archivo, nombre } = await exportacionesService.exportarDatos(formato)
+      exportacionesService.descargarArchivo(archivo, nombre)
+    } catch {
+      setErrorExportacion('No se pudieron exportar los datos. Intente nuevamente.')
+    } finally {
+      setExportando(false)
+    }
+  }
 
   return (
     <div className="dashboard">
@@ -23,6 +43,33 @@ const Dashboard = () => {
             <p><strong>Email:</strong> {admin.email}</p>
             <p><strong>Sector:</strong> {admin.sector}</p>
           </div>
+
+          {esGerencia && (
+            <div className="exportar-datos">
+              <Dropdown>
+                <Dropdown.Toggle className="btn-exportar" disabled={exportando}>
+                  {exportando
+                    ? <><Spinner size="sm" /> Exportando...</>
+                    : 'Exportar mis datos'}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item as="button" onClick={() => exportar('csv')}>
+                    CSV (archivo .zip)
+                  </Dropdown.Item>
+                  <Dropdown.Item as="button" onClick={() => exportar('json')}>
+                    JSON
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+
+              {errorExportacion && (
+                <Alert className="mt-3" variant="danger">
+                  {errorExportacion}
+                </Alert>
+              )}
+            </div>
+          )}
+
           <div className="dashboard-cards">
 
             <div className="dashboard-card">
