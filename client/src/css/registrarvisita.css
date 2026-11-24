@@ -1,0 +1,71 @@
+.btn-registrar-visita{
+    display:inline-block;
+    background:white;
+    color:#d63384;
+    border:2px solid #d63384;
+    padding:6px 14px;
+    border-radius:10px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-registrar-visita:hover{
+    background:#d63384;
+    color:white;
+}
+
+.nota-visita{
+    display:grid;
+    gap:4px;
+    width:100%;
+    font-weight:600;
+    color:#5f4b57;
+}
+
+.nota-visita textarea{
+    border:1px solid #f1c4d8;
+    border-radius:8px;
+    padding:8px 10px;
+    font-weight:normal;
+    resize:none;
+}
+
+.contador-nota{
+    justify-self:end;
+    font-size:12px;
+    font-weight:normal;
+    color:#8a7681;
+}
+
+.instruccion-visita{
+    margin:15px 0 10px;
+    color:#5f4b57;
+}
+
+/* 2x2 de botones grandes, faciles de tocar en el celular */
+.botones-resultado{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.btn-resultado{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    min-height:96px;
+    font-size:18px;
+    font-weight:600;
+    border-radius:14px;
+}
+
+.icono-resultado{
+    font-size:28px;
+    line-height:1;
+}
+
+.toast-visita{
+    z-index:2000;
+}
