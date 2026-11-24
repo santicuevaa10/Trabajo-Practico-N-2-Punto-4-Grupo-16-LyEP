@@ -6,6 +6,7 @@ import clientesRoutes from './routes/ClientesRoutes.js';
 import alertasRoutes from './routes/alertasRoutes.js';
 import metricasRoutes from './routes/MetricasRoutes.js';
 import importacionesRoutes from './routes/ImportacionesRoutes.js';
+import exportacionesRoutes from './routes/ExportacionesRoutes.js';
 import { manejadorErrores } from './middleware/errorHandler.js';
 
 const app = express();
@@ -22,6 +23,7 @@ app.use('/users', clientesRoutes);
 app.use('/alertas', alertasRoutes);
 app.use('/metricas', metricasRoutes);
 app.use('/importaciones', importacionesRoutes);
+app.use('/exportaciones', exportacionesRoutes);
 
 app.use(manejadorErrores);
 
