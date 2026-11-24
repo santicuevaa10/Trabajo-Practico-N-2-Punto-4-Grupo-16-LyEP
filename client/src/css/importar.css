@@ -1,10 +1,10 @@
 .importar-container{
-    background:white;
+    background:var(--cf-surface);
     max-width:1000px;
     margin:40px auto;
     padding:35px;
-    border-radius:20px;
-    box-shadow:0px 10px 25px rgba(214,51,132,.10);
+    border-radius:var(--cf-radius-lg);
+    box-shadow:var(--cf-shadow-1);
 }
 
 .importar-container h1{
@@ -12,7 +12,7 @@
 }
 
 .ayuda-importar{
-    color:#5f4b57;
+    color:var(--cf-text-muted);
     max-width:720px;
     margin:0 auto 25px;
     text-align:center;
@@ -20,11 +20,11 @@
 
 .sin-permiso{
     text-align:center;
-    background:#fff5f9;
-    border:1px solid #ffd6e7;
-    border-radius:12px;
+    background:var(--cf-primary-soft);
+    border:1px solid var(--cf-border);
+    border-radius:var(--cf-radius-md);
     padding:15px;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
 }
 
 .selector-archivo{
@@ -32,36 +32,36 @@
     max-width:480px;
     margin:0 auto;
     padding:28px 20px;
-    border:2px dashed #d63384;
-    border-radius:16px;
+    border:2px dashed var(--cf-primary);
+    border-radius:var(--cf-radius-lg);
     text-align:center;
-    color:#d63384;
+    color:var(--cf-primary);
     font-weight:600;
     cursor:pointer;
     transition:.25s;
 }
 
 .selector-archivo:hover{
-    background:#fff5f9;
+    background:var(--cf-primary-soft);
 }
 
 .selector-archivo input{
     display:block;
     margin:12px auto 0;
     font-weight:normal;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
 }
 
 .procesando{
     text-align:center;
     margin-top:15px;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
 }
 
 .error-importar{
     text-align:center;
     margin-top:15px;
-    color:#dc3545;
+    color:var(--cf-danger-text);
     font-weight:600;
 }
 
@@ -70,11 +70,11 @@
 }
 
 .aviso-columnas{
-    background:#fffaeb;
-    border:1px solid #f3d27a;
-    border-radius:12px;
+    background:var(--cf-warning-soft);
+    border:1px solid var(--cf-warning-border);
+    border-radius:var(--cf-radius-md);
     padding:12px 15px;
-    color:#7a5b00;
+    color:var(--cf-warning-text);
 }
 
 .resumen-importacion{
@@ -85,23 +85,23 @@
 }
 
 .tarjeta-resumen{
-    border-radius:14px;
+    border-radius:var(--cf-radius-md);
     padding:14px;
     text-align:center;
-    color:#5f4b57;
-    background:#fafafa;
-    border-top:5px solid #6c757d;
+    color:var(--cf-text-muted);
+    background:var(--cf-surface-alt);
+    border-top:5px solid var(--cf-neutral-status);
 }
 
 .tarjeta-resumen .numero{
     display:block;
-    font-size:28px;
+    font-size:var(--cf-fs-xl);
     font-weight:bold;
 }
 
-.tarjeta-resumen.accion-crear{ border-top-color:#198754; }
-.tarjeta-resumen.accion-actualizar{ border-top-color:#0d6efd; }
-.tarjeta-resumen.accion-error{ border-top-color:#dc3545; }
+.tarjeta-resumen.accion-crear{ border-top-color:var(--cf-success); }
+.tarjeta-resumen.accion-actualizar{ border-top-color:var(--cf-info); }
+.tarjeta-resumen.accion-error{ border-top-color:var(--cf-danger); }
 
 .tabla-importacion-wrapper{
     width:100%;
@@ -111,40 +111,40 @@
 .tabla-importacion{
     width:100%;
     border-collapse:collapse;
-    font-size:14px;
+    font-size:var(--cf-fs-sm);
 }
 
 .tabla-importacion th{
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary);
+    color:var(--cf-on-primary);
     padding:10px;
     text-align:left;
 }
 
 .tabla-importacion td{
     padding:9px 10px;
-    border-bottom:1px solid #ffd6e7;
-    color:#5f4b57;
+    border-bottom:1px solid var(--cf-border);
+    color:var(--cf-text-muted);
 }
 
 .fila-con-error td{
-    background:#fdf0f1;
+    background:var(--cf-danger-soft);
 }
 
 .badge-accion{
     display:inline-block;
-    border-radius:20px;
+    border-radius:var(--cf-radius-pill);
     padding:2px 10px;
-    font-size:12px;
+    font-size:var(--cf-fs-xs);
     font-weight:600;
-    color:white;
+    color:var(--cf-on-primary);
     white-space:nowrap;
 }
 
-.badge-accion.accion-crear{ background:#198754; }
-.badge-accion.accion-actualizar{ background:#0d6efd; }
-.badge-accion.accion-sin-cambios{ background:#6c757d; }
-.badge-accion.accion-error{ background:#dc3545; }
+.badge-accion.accion-crear{ background:var(--cf-success); }
+.badge-accion.accion-actualizar{ background:var(--cf-info); }
+.badge-accion.accion-sin-cambios{ background:var(--cf-neutral-status); }
+.badge-accion.accion-error{ background:var(--cf-danger); }
 
 .acciones-importar{
     display:flex;
@@ -152,16 +152,16 @@
     flex-wrap:wrap;
     gap:15px;
     margin-top:20px;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
 }
 
 .btn-confirmar-importacion,
 .btn-ver-clientes{
     display:inline-block;
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary);
+    color:var(--cf-on-primary);
     border:none;
-    border-radius:10px;
+    border-radius:var(--cf-radius-md);
     padding:10px 22px;
     font-weight:600;
 }
@@ -171,6 +171,6 @@
 }
 
 .btn-ver-clientes:hover{
-    color:white;
-    background:#c2185b;
+    color:var(--cf-on-primary);
+    background:var(--cf-primary-hover);
 }

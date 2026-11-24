@@ -1,40 +1,40 @@
 .detalle-cliente{
-    background:white;
+    background:var(--cf-surface);
     max-width:850px;
     margin:40px auto;
     padding:40px;
-    border-radius:22px;
-    box-shadow:0px 15px 35px rgba(214,51,132,.12);
+    border-radius:var(--cf-radius-lg);
+    box-shadow:var(--cf-shadow-1);
 }
 
 .detalle-cliente h1{
     text-align:center;
     margin-bottom:35px;
-    color:#d63384;
+    color:var(--cf-primary);
 }
 
 .detalle-cliente h2{
     margin-top:30px;
     padding-bottom:8px;
-    border-bottom:2px solid #ffd6e7;
-    color:#c2185b;
+    border-bottom:2px solid var(--cf-border);
+    color:var(--cf-primary-strong);
 }
 
 .detalle-cliente p{
     margin:12px 0;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
 }
 
 .detalle-cliente strong{
-    color:#d63384;
+    color:var(--cf-primary);
 }
 
 .btn-eliminar{
     margin-top:25px;
-    background:#dc3545;
-    color:white;
+    background:var(--cf-danger);
+    color:var(--cf-on-primary);
     border:none;
-    border-radius:10px;
+    border-radius:var(--cf-radius-md);
     padding:10px 20px;
     width:100%;
     font-weight:600;
@@ -42,29 +42,29 @@
 }
 
 .btn-eliminar:hover{
-    background:#bb2d3b;
+    background:var(--cf-danger-hover);
     transform:scale(1.02);
 }
 .mensaje-eliminado{
-    background:#d4edda;
-    color:#155724;
-    border:1px solid #b8dfc2;
+    background:var(--cf-success-soft);
+    color:var(--cf-success-text);
+    border:1px solid var(--cf-success-border);
     padding:15px;
-    border-radius:12px;
+    border-radius:var(--cf-radius-md);
     text-align:center;
-    font-size:18px;
+    font-size:var(--cf-fs-lg);
     font-weight:bold;
     margin-bottom:25px;
 }
 
 /* --- Documentacion del cliente --- */
 .banner-doc-vencida{
-    background:#dc3545;
-    color:white;
+    background:var(--cf-danger);
+    color:var(--cf-on-primary);
     padding:15px 20px;
-    border-radius:12px;
+    border-radius:var(--cf-radius-md);
     text-align:center;
-    font-size:18px;
+    font-size:var(--cf-fs-lg);
     font-weight:bold;
     margin-bottom:25px;
 }
@@ -82,42 +82,42 @@
     gap:15px;
     padding:12px 15px;
     margin-bottom:10px;
-    border-radius:12px;
-    border-left:6px solid #198754;
-    background:#f6fbf8;
-    color:#5f4b57;
+    border-radius:var(--cf-radius-md);
+    border-left:6px solid var(--cf-success);
+    background:var(--cf-success-soft);
+    color:var(--cf-text-muted);
 }
 
 .documento-por_vencer{
-    border-left-color:#e0a800;
-    background:#fffaeb;
+    border-left-color:var(--cf-warning);
+    background:var(--cf-warning-soft);
 }
 
 .documento-vencido{
-    border-left-color:#dc3545;
-    background:#fdf0f1;
+    border-left-color:var(--cf-danger);
+    background:var(--cf-danger-soft);
 }
 
 .documento-vencimiento{
-    font-size:14px;
+    font-size:var(--cf-fs-sm);
 }
 
 .btn-quitar-documento{
     background:transparent;
-    color:#dc3545;
-    border:1px solid #dc3545;
-    border-radius:8px;
+    color:var(--cf-danger-text);
+    border:1px solid var(--cf-danger);
+    border-radius:var(--cf-radius-sm);
     padding:4px 12px;
     flex-shrink:0;
 }
 
 .btn-quitar-documento:hover{
-    background:#dc3545;
-    color:white;
+    background:var(--cf-danger);
+    color:var(--cf-on-primary);
 }
 
 .error-documento{
-    color:#dc3545 !important;
+    color:var(--cf-danger-text) !important;
     font-weight:600;
 }
 
@@ -126,37 +126,37 @@
     gap:12px;
     margin-top:20px;
     padding:20px;
-    border:2px dashed #ffd6e7;
-    border-radius:16px;
+    border:2px dashed var(--cf-border);
+    border-radius:var(--cf-radius-lg);
 }
 
 .form-documento h3{
-    font-size:18px;
-    color:#c2185b;
+    font-size:var(--cf-fs-lg);
+    color:var(--cf-primary-strong);
     margin:0;
 }
 
 .form-documento label{
     display:grid;
     gap:4px;
-    color:#5f4b57;
+    color:var(--cf-text-muted);
     font-weight:600;
 }
 
 .form-documento input,
 .form-documento select,
 .form-documento textarea{
-    border:1px solid #f1c4d8;
-    border-radius:8px;
+    border:1px solid var(--cf-border-strong);
+    border-radius:var(--cf-radius-sm);
     padding:8px 10px;
     font-weight:normal;
 }
 
 .form-documento button{
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary);
+    color:var(--cf-on-primary);
     border:none;
-    border-radius:10px;
+    border-radius:var(--cf-radius-md);
     padding:10px 20px;
     font-weight:600;
 }
@@ -168,17 +168,17 @@
 /* --- Pestañas de la ficha --- */
 .pestanas-cliente{
     margin:25px 0 20px;
-    border-bottom-color:#ffd6e7;
+    border-bottom-color:var(--cf-border);
 }
 
 .pestanas-cliente .nav-link{
-    color:#c2185b;
+    color:var(--cf-primary-strong);
     font-weight:600;
 }
 
 .pestanas-cliente .nav-link.active{
-    color:#d63384;
-    border-color:#ffd6e7 #ffd6e7 white;
+    color:var(--cf-primary);
+    border-color:var(--cf-border) var(--cf-border) var(--cf-surface);
 }
 
 /* --- Registrar visita / historial de visitas --- */
@@ -199,15 +199,15 @@
 .visita{
     padding:10px 15px;
     margin-bottom:10px;
-    border-radius:12px;
-    border-left:6px solid #6c757d;
-    background:#fafafa;
-    color:#5f4b57;
+    border-radius:var(--cf-radius-md);
+    border-left:6px solid var(--cf-neutral-status);
+    background:var(--cf-surface-alt);
+    color:var(--cf-text-muted);
 }
 
-.visita-pedido{ border-left-color:#198754; }
-.visita-no_atendio{ border-left-color:#e0a800; }
-.visita-reclamo{ border-left-color:#dc3545; }
+.visita-pedido{ border-left-color:var(--cf-success); }
+.visita-no_atendio{ border-left-color:var(--cf-warning); }
+.visita-reclamo{ border-left-color:var(--cf-danger); }
 
 .detalle-cliente .visita-nota{
     margin:6px 0;
@@ -215,5 +215,5 @@
 }
 
 .visita small{
-    color:#8a7681;
+    color:var(--cf-text-subtle);
 }

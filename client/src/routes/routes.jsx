@@ -9,59 +9,33 @@ import ErrorPage from '../pages/ErrorPage'
 import Importar from '../pages/Importar'
 import Metricas from '../pages/Metricas'
 import RutaProtegida from '../components/RutaProtegida'
+import Layout from '../components/Layout'
+
 const AppRoutes = () => {
   return (
     <Routes>
 
+      {/* Sin layout */}
       <Route path="/login" element={<Login />} />
+
+      {/* Rutas protegidas: RutaProtegida controla la sesión una sola vez y
+          Layout (sidebar + topbar + footer) dibuja cada página en su <Outlet />. */}
       <Route
-        path="/"
         element={
           <RutaProtegida>
-            <Dashboard />
+            <Layout />
           </RutaProtegida>
         }
-      />
-      <Route
-        path="/clientes"
-        element={
-          <RutaProtegida>
-            <ListaClientes />
-          </RutaProtegida>
-        }
-      />
-      <Route
-        path="/clientes/:id"
-        element={
-         <RutaProtegida>
-          <DetalleCliente />
-         </RutaProtegida>
-      }
-      />
-      <Route
-        path="/alertas"
-        element={
-          <RutaProtegida>
-            <Alertas />
-          </RutaProtegida>
-        }
-      />
-      <Route
-        path="/importar"
-        element={
-          <RutaProtegida>
-            <Importar />
-          </RutaProtegida>
-        }
-      />
-      <Route
-        path="/metricas"
-        element={
-          <RutaProtegida>
-            <Metricas />
-          </RutaProtegida>
-        }
-      />
+      >
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/clientes" element={<ListaClientes />} />
+        <Route path="/clientes/:id" element={<DetalleCliente />} />
+        <Route path="/alertas" element={<Alertas />} />
+        <Route path="/importar" element={<Importar />} />
+        <Route path="/metricas" element={<Metricas />} />
+      </Route>
+
+      {/* Sin layout */}
       <Route path="*" element={<ErrorPage />} />
 
     </Routes>

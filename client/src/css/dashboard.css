@@ -1,37 +1,37 @@
 .dashboard {
     padding: 30px 40px;
     text-align: center;
-    background: #f5f7fb;
+    background: var(--cf-bg);
     min-height: 80vh;
     margin-bottom: 20px;
 }
 
 .dashboard h1 {
-    color: #c2185b;
+    color: var(--cf-primary-strong);
     margin-bottom: 10px;
-    font-size: 2rem;
+    font-size: var(--cf-fs-2xl);
 }
 .dashboard-login {
     margin-top: 30px;
 }
 .user-card {
-    background: white;
+    background: var(--cf-surface);
     max-width: 500px;
     margin: 20px auto;
     padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0px 10px 25px rgba(214, 51, 132, 0.12);
-    border-left: 6px solid #d63384;
+    border-radius: var(--cf-radius-lg);
+    box-shadow: var(--cf-shadow-1);
+    border-left: 6px solid var(--cf-primary);
     text-align: left;
 }
 .user-card h3 {
-    color: #c2185b;
+    color: var(--cf-primary-strong);
     margin-bottom: 12px;
 }
 .user-card p {
-    font-size: 16px;
+    font-size: var(--cf-fs-md);
     margin: 6px 0;
-    color: #2d3748;
+    color: var(--cf-text);
 }
 .dashboard-cards {
     display: flex;
@@ -43,26 +43,26 @@
 }
 .dashboard-card {
     width: 220px;
-    background: white;
-    border-radius: 20px;
+    background: var(--cf-surface);
+    border-radius: var(--cf-radius-lg);
     padding: 30px;
-    box-shadow: 0px 10px 25px rgba(214, 51, 132, 0.10);
-    border: 1px solid #ffd6e8;
+    box-shadow: var(--cf-shadow-1);
+    border: 1px solid var(--cf-border);
     transition: 0.3s ease;
 }
 .dashboard-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0px 18px 35px rgba(214, 51, 132, 0.20);
+    box-shadow: var(--cf-shadow-2);
 }
 .dashboard-card h3 {
-    font-size: 30px;
-    color: #c2185b;
+    font-size: var(--cf-fs-xl);
+    color: var(--cf-primary-strong);
     margin-bottom: 10px;
 }
 .dashboard-card p {
-    font-size: 40px;
+    font-size: var(--cf-fs-2xl);
     font-weight: bold;
-    color: #d63384;
+    color: var(--cf-primary);
 }
 
 
@@ -73,17 +73,17 @@
     margin-bottom: 5px;
 }
 .sucursales-estado {
-    color: #718096;
+    color: var(--cf-text-subtle);
     margin-top: 15px;
 }
 /* El nombre de la sucursal es mas largo que "Clientes": se achica el titulo */
 .kpi-sucursal h3 {
-    font-size: 22px;
+    font-size: var(--cf-fs-lg);
 }
 .kpi-nuevos {
     display: block;
-    font-size: 14px;
-    color: #4a5568;
+    font-size: var(--cf-fs-sm);
+    color: var(--cf-text-muted);
 }
 
 /* La tarjeta de alertas es un link: sin subrayado y con el mismo look */
@@ -93,7 +93,7 @@
     text-decoration: none;
 }
 .kpi-alertas:focus-visible {
-    outline: 3px solid #c2185b;
+    outline: 3px solid var(--cf-primary-hover);
     outline-offset: 3px;
 }
 
@@ -105,9 +105,9 @@
 .btn-exportar:hover,
 .btn-exportar:focus,
 .btn-exportar:disabled {
-    background: #d63384;
-    border-color: #d63384;
+    background: var(--cf-primary);
+    border-color: var(--cf-primary);
 }
 .btn-exportar:hover {
-    background: #c2185b;
+    background: var(--cf-primary-hover);
 }

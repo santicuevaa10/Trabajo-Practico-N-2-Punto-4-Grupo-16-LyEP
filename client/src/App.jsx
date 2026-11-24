@@ -1,22 +1,9 @@
 import '../src/css/app.css'
-import Header from './components/Header'
-import Nav from './components/Nav'
-import Footer from './components/Footer'
 import AppRoutes from './routes/routes'
-import useAutorizaciones from './hooks/useAutorizaciones'
 
+// La sidebar, la topbar y el footer viven en components/Layout.jsx y solo
+// envuelven las rutas protegidas (ver routes/routes.jsx).
 function App() {
-
-  const {admin} = useAutorizaciones()
-return (
-<>
-    
-    {admin && <Header />}
-    {admin && <Nav />}
-    <AppRoutes />
-    <Footer />
-</>
-)
+  return <AppRoutes />
 }
 export default App
-  

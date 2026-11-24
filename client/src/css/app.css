@@ -13,18 +13,18 @@ main {
     flex: 1;
 }
 h1{
-    color:#d63384;
+    color:var(--cf-primary);
     font-weight:700;
     margin-bottom:25px;
 }
 
 h2{
-    color:#c2185b;
+    color:var(--cf-primary-strong);
     margin-bottom:20px;
 }
 
 h3{
-    color:#e75480;
+    color:var(--cf-primary);
 }
 
 a{
@@ -34,7 +34,7 @@ a{
 hr{
     border:none;
     height:2px;
-    background:#ffd6e7;
+    background:var(--cf-primary-muted);
     margin:35px 0;
 }
 
@@ -58,7 +58,7 @@ table a{
 }
 
 ::selection{
-    background:#d63384;
-    color:white;
+    background:var(--cf-primary);
+    color:var(--cf-on-primary);
 }
 
