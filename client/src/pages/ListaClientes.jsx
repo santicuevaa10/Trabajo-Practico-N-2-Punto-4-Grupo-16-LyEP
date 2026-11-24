@@ -1,6 +1,6 @@
 import "../css/listaclientes.css"
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import FormCliente from "../components/FormCliente";
 import RegistrarVisita from "../components/RegistrarVisita";
 // COMMIT: "refactor: extraer la carga de clientes a un hook useClientes"
@@ -20,7 +20,17 @@ const ListaClientes = () => {
   // "fix: cancelar peticiones fetch..." (7) y
   // "refactor: centralizar llamadas HTTP en clientesService" (11))
   const { clientes, loading, error, agregarCliente, actualizarCliente } = useClientes();
-  const [busqueda, setBusqueda] = useState("");
+  // El buscador global de la topbar llega como ?buscar=. Si cambia mientras
+  // la página está abierta (nueva búsqueda desde la topbar), se actualiza el
+  // filtro durante el render, sin un useEffect extra.
+  const [searchParams] = useSearchParams();
+  const buscarParam = searchParams.get("buscar") ?? "";
+  const [busqueda, setBusqueda] = useState(buscarParam);
+  const [ultimoBuscarParam, setUltimoBuscarParam] = useState(buscarParam);
+  if (buscarParam !== ultimoBuscarParam) {
+    setUltimoBuscarParam(buscarParam);
+    setBusqueda(buscarParam);
+  }
   const [sucursal, setSucursal] = useState("");
 
   // COMMIT: "fix: usar optional chaining en el filtro y la tabla de clientes"
